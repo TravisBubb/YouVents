@@ -1,0 +1,110 @@
+﻿@page
+@model YouVents.Pages.Events.IndexModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container" style="min-height: 55vh;">
+    <div class="row">
+        <!-- Left side-bar to show events that the user is attending -->
+        <div class="col-3 text-center">
+            <h4 class="text-primary mb-4"><u>Your Events</u></h4>
+            <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
+                <a>
+                    <img src="~/Images/event.png" />
+                    <p><strong>Event Name</strong></p>
+                </a>
+                <a>
+                    <img src="~/Images/event.png" />
+                    <p><strong>Event Name</strong></p>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- Main section to show events near the user (default sort by soonest date) -->
+        <div class="col-9 text-center">
+            <h4 class="text-primary"><u>Events Near you</u></h4>
+            <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
+                <a class="m-1">
+                    <div class="row">
+                        <div class="col text-right">
+                            <img src="~/Images/event.png" />
+                        </div>
+                        <div class="col text-left">
+                            <p class="m-0"><strong>Event Name</strong></p>
+                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
+                            <p class="text-black-50 m-0">Time: 7:30pm</p>
+                            <p class="text-black-50 m-0">Even more event details here.</p>
+                        </div>
+                    </div>
+                </a>
+                <a class="m-1">
+                    <div class="row">
+                        <div class="col text-right">
+                            <img src="~/Images/event.png" />
+                        </div>
+                        <div class="col text-left">
+                            <p class="m-0"><strong>Event Name</strong></p>
+                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
+                            <p class="text-black-50 m-0">Time: 7:30pm</p>
+                            <p class="text-black-50 m-0">Even more event details here.</p>
+                        </div>
+                    </div>
+                </a>
+                <a class="m-1">
+                    <div class="row">
+                        <div class="col text-right">
+                            <img src="~/Images/event.png" />
+                        </div>
+                        <div class="col text-left">
+                            <p class="m-0"><strong>Event Name</strong></p>
+                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
+                            <p class="text-black-50 m-0">Time: 7:30pm</p>
+                            <p class="text-black-50 m-0">Even more event details here.</p>
+                        </div>
+                    </div>
+                </a>
+                <a class="m-1">
+                    <div class="row">
+                        <div class="col text-right">
+                            <img src="~/Images/event.png" />
+                        </div>
+                        <div class="col text-left">
+                            <p class="m-0"><strong>Event Name</strong></p>
+                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
+                            <p class="text-black-50 m-0">Time: 7:30pm</p>
+                            <p class="text-black-50 m-0">Even more event details here.</p>
+                        </div>
+                    </div>
+                </a>
+                <a class="m-1">
+                    <div class="row">
+                        <div class="col text-right">
+                            <img src="~/Images/event.png" />
+                        </div>
+                        <div class="col text-left">
+                            <p class="m-0"><strong>Event Name</strong></p>
+                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
+                            <p class="text-black-50 m-0">Time: 7:30pm</p>
+                            <p class="text-black-50 m-0">Even more event details here.</p>
+                        </div>
+                    </div>
+                </a>
+                <a class="m-1">
+                    <div class="row">
+                        <div class="col text-right">
+                            <img src="~/Images/event.png" />
+                        </div>
+                        <div class="col text-left">
+                            <p class="m-0"><strong>Event Name</strong></p>
+                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
+                            <p class="text-black-50 m-0">Time: 7:30pm</p>
+                            <p class="text-black-50 m-0">Even more event details here.</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
