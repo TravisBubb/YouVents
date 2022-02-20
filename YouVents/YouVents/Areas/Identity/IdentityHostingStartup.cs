@@ -17,7 +17,7 @@ namespace YouVents.Areas.Identity
         {
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(
+                    options.UseSqlite(
                         context.Configuration.GetConnectionString("ApplicationDbContextConnection")));
 
                 services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
