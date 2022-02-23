@@ -14,5 +14,6 @@ namespace YouVents.Areas.Identity.Data
         public string LastName { get; set; }
         [DataType(DataType.Date)]
         public DateTime DOB { get; set; }
+        public string AccountType { get; set; }
     }
 }
