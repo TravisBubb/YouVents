@@ -76,6 +76,8 @@ namespace YouVents.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string AccountType { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -96,7 +98,8 @@ namespace YouVents.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     FirstName = Input.FirstName,
                     LastName = Input.LastName,
-                    DOB = Input.DOB
+                    DOB = Input.DOB,
+                    AccountType = Input.AccountType.ToString()
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
