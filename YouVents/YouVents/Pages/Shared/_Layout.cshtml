@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">
                     <img src="~/Images/logo.png" />
@@ -21,16 +21,17 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/About">About Us</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/About">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-page="/Events/Index">Browse</a>
                         </li>
 
-                        <partial name="_LoginPartial" />
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-page="/Events/Index">Browse</a>
-                        </li>
+                        <partial name="_LoginPartial" /> <!-- Add the login section of the nav bar -->
+
                     </ul>
                 </div>
             </div>
