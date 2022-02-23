@@ -9,7 +9,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">
                     <img src="~/Images/logo.png" />
@@ -21,19 +21,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/About">About Us</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/About">About Us</a>
                         </li>
 
                         <partial name="_LoginPartial" />
-                        @*@if (User.Identity.IsAuthenticated)
-                            {
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-page="/Events/Browse">Browse</a>
-                                </li>
-                            }*@
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-page="/Events/Index">Browse</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -45,11 +42,23 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - YouVentsTest - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <p class="col-md-4 mb-0 text-muted">&copy; 2022 YouVents</p>
+
+            <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                <img width="60" height="60" src="~/images/logo-small.png" />
+            </a>
+
+            <ul class="nav col-md-4 justify-content-end">
+                <li class="nav-item"><a asp-page="/Index" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a asp-page="/Privacy" class="nav-link px-2 text-muted">Privacy</a></li>
+                <li class="nav-item"><a asp-page="/About" class="nav-link px-2 text-muted">About</a></li>
+                <li class="nav-item"><a asp-page="/Events/Index" class="nav-link px-2 text-muted">Browse</a></li>
+                <li class="nav-item"><a asp-page="#" class="nav-link px-2 text-muted">Support</a></li>
+            </ul>
+        </footer>
+    </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
