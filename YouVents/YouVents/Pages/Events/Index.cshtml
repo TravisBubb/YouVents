@@ -6,104 +6,33 @@
 
 <div class="container" style="min-height: 55vh;">
     <div class="row">
-        <!-- Left side-bar to show events that the user is attending -->
-        <div class="col-3 text-center">
-            <h4 class="text-primary mb-4"><u>Your Events</u></h4>
-            <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
-                <a>
-                    <img src="~/Images/event.png" />
-                    <p><strong>Event Name</strong></p>
-                </a>
-                <a>
-                    <img src="~/Images/event.png" />
-                    <p><strong>Event Name</strong></p>
-                </a>
-            </div>
-        </div>
-
-
         <!-- Main section to show events near the user (default sort by soonest date) -->
-        <div class="col-9 text-center">
-            <h4 class="text-primary"><u>Events Near you</u></h4>
+        <div class="col-12">
+            <h4><u>Events Near you</u></h4>
+            <form class="form-inline" asp-action="Index" method="get">
+                <!-- Does nothing at the moment (just reloads the current page) -->
+                <input type="search" class="form-control rounded" placeholder="Search" />
+                <input type="submit" class="btn btn-outline-dark" value="Search" />
+            </form>
             <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
-                <a class="m-1">
-                    <div class="row">
-                        <div class="col text-right">
-                            <img src="~/Images/event.png" />
+                <!-- Loop through all of the events and display them -->
+                @foreach (var E in Model.Events)
+                {
+                    <a class="m-1">
+                        <div class="row">
+                            <div class="col text-right">
+                                <img src="~/Images/event.png" />
+                            </div>
+                            <div class="col text-left">
+                                <p class="m-0"><strong>@E.Name</strong></p>
+                                <p class="text-black-50 m-0">Date: @E.Date</p>
+                                <p class="text-black-50 m-0">Time: @E.Time</p>
+                                <p class="text-black-50 m-0">Price: @E.Price.ToString("C")</p>
+                                <p class="text-black-50 m-0">Location: @E.City, @E.State)</p>
+                            </div>
                         </div>
-                        <div class="col text-left">
-                            <p class="m-0"><strong>Event Name</strong></p>
-                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
-                            <p class="text-black-50 m-0">Time: 7:30pm</p>
-                            <p class="text-black-50 m-0">Even more event details here.</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="m-1">
-                    <div class="row">
-                        <div class="col text-right">
-                            <img src="~/Images/event.png" />
-                        </div>
-                        <div class="col text-left">
-                            <p class="m-0"><strong>Event Name</strong></p>
-                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
-                            <p class="text-black-50 m-0">Time: 7:30pm</p>
-                            <p class="text-black-50 m-0">Even more event details here.</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="m-1">
-                    <div class="row">
-                        <div class="col text-right">
-                            <img src="~/Images/event.png" />
-                        </div>
-                        <div class="col text-left">
-                            <p class="m-0"><strong>Event Name</strong></p>
-                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
-                            <p class="text-black-50 m-0">Time: 7:30pm</p>
-                            <p class="text-black-50 m-0">Even more event details here.</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="m-1">
-                    <div class="row">
-                        <div class="col text-right">
-                            <img src="~/Images/event.png" />
-                        </div>
-                        <div class="col text-left">
-                            <p class="m-0"><strong>Event Name</strong></p>
-                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
-                            <p class="text-black-50 m-0">Time: 7:30pm</p>
-                            <p class="text-black-50 m-0">Even more event details here.</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="m-1">
-                    <div class="row">
-                        <div class="col text-right">
-                            <img src="~/Images/event.png" />
-                        </div>
-                        <div class="col text-left">
-                            <p class="m-0"><strong>Event Name</strong></p>
-                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
-                            <p class="text-black-50 m-0">Time: 7:30pm</p>
-                            <p class="text-black-50 m-0">Even more event details here.</p>
-                        </div>
-                    </div>
-                </a>
-                <a class="m-1">
-                    <div class="row">
-                        <div class="col text-right">
-                            <img src="~/Images/event.png" />
-                        </div>
-                        <div class="col text-left">
-                            <p class="m-0"><strong>Event Name</strong></p>
-                            <p class="text-black-50 m-0">Date: 01/01/2022</p>
-                            <p class="text-black-50 m-0">Time: 7:30pm</p>
-                            <p class="text-black-50 m-0">Even more event details here.</p>
-                        </div>
-                    </div>
-                </a>
+                    </a>
+                }
             </div>
         </div>
     </div>

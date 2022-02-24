@@ -1,0 +1,41 @@
+﻿@page "{id:int?}"
+@model YouVents.Pages.Events.ViewModel
+@{
+    ViewData["Title"] = "View";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-9 text-left">
+            <h1>@Model.MyEvent.Name</h1>
+            @*<img height="150" width="300" src="~/Images/event.png" />*@
+            <br />
+            <h4>Description</h4>
+            <p>@Model.MyEvent.Description</p>
+        </div>
+        <div class="col-3 text-left">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Details</h5>
+                    <p class="card-text"><b>Event Date</b>: @Model.MyEvent.Date</p>
+                    <p class="card-text"><b>Start Time:</b> @Model.MyEvent.Time</p>
+                    <p class="card-text">
+                        <b>Location</b>: @Model.MyEvent.Street, @Model.MyEvent.City,
+                        @Model.MyEvent.State, @Model.MyEvent
+                    </p>
+                    <p class="card-text"><b>Ticket Price:</b> @Model.MyEvent.Price.ToString("C")</p>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Message Boards</h5>
+                    <p><a href="#" class="card-link">Contact Organizer</a></p>
+                    <p><a href="#" class="card-link">General Event Chat</a></p>
+                    <p><a href="#" class="card-link">FAQ</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

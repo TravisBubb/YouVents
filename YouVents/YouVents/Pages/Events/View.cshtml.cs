@@ -1,20 +1,28 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.Sqlite;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Data.SqlClient;
+using Microsoft.Data.Sqlite;
 using YouVents.Models;
 
 namespace YouVents.Pages.Events
 {
-    public class IndexModel : PageModel
+    public class ViewModel : PageModel
     {
-        public List<Event> Events { get; set; }
+        public Event MyEvent { get; set; }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int? id)
         {
-            Events = new List<Event>();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
             using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
-            using SqliteCommand cmd = new SqliteCommand($"SELECT * FROM Events", connection);
+            using SqliteCommand cmd = new SqliteCommand($"SELECT * FROM Events WHERE Id={id}", connection);
             connection.Open();
             using (SqliteDataReader reader = cmd.ExecuteReader())
             {
@@ -22,7 +30,7 @@ namespace YouVents.Pages.Events
                 {
                     while (reader.Read())
                     {
-                        Event MyEvent = new Event
+                        MyEvent = new Event
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             OrganizerId = reader.GetString(reader.GetOrdinal("OrganizerId")),
@@ -38,12 +46,15 @@ namespace YouVents.Pages.Events
                             Zip = reader.GetString(reader.GetOrdinal("Zip")),
                             Price = reader.GetFloat(reader.GetOrdinal("Price"))
                         };
-                        Events.Add(MyEvent);
                     }
                 }
             }
 
+            if (MyEvent == null)
+            {
+                return NotFound();
+            }
             return Page();
         }
     }
- }
+}
