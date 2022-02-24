@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
@@ -13,14 +14,11 @@ namespace YouVents.Pages.Events
     public class ViewModel : PageModel
     {
         public Event MyEvent { get; set; }
+        [BindProperty]
+        public int NumTickets { get; set; }
 
         public IActionResult OnGet(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
             using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
             using SqliteCommand cmd = new SqliteCommand($"SELECT * FROM Events WHERE Id={id}", connection);
             connection.Open();
@@ -55,6 +53,11 @@ namespace YouVents.Pages.Events
                 return NotFound();
             }
             return Page();
+        }
+
+        public IActionResult OnPost(int id)
+        {
+            return Redirect($"/Events/Checkout/{id}/{NumTickets}");
         }
     }
 }

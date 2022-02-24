@@ -9,6 +9,7 @@ namespace YouVents.Pages.Events
     public class IndexModel : PageModel
     {
         public List<Event> Events { get; set; }
+        public int NumTickets { get; set; }
 
         public IActionResult OnGet()
         {
@@ -42,8 +43,7 @@ namespace YouVents.Pages.Events
                     }
                 }
             }
-
             return Page();
         }
     }
- }
+}

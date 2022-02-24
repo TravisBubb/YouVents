@@ -25,6 +25,11 @@
                         @Model.MyEvent.State, @Model.MyEvent.Zip
                     </p>
                     <p class="card-text"><b>Ticket Price:</b> @Model.MyEvent.Price.ToString("C")</p>
+                    <form asp-route-id="@Model.MyEvent.Id" method="post">
+                        <label asp-for="NumTickets">Tickets:</label>
+                        <input type="number" class="form-control" asp-for="NumTickets" />
+                        <input type="submit" class="btn btn-lg btn-outline-primary" value="Checkout" />
+                    </form>
                 </div>
             </div>
             <div class="card" style="width: 18rem;">
