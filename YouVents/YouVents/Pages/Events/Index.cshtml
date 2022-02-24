@@ -7,18 +7,13 @@
 <div class="container" style="min-height: 55vh;">
     <div class="row">
         <!-- Main section to show events near the user (default sort by soonest date) -->
-        <div class="col-12">
+        <div class="col-12 text-center">
             <h4><u>Events Near you</u></h4>
-            <form class="form-inline" asp-action="Index" method="get">
-                <!-- Does nothing at the moment (just reloads the current page) -->
-                <input type="search" class="form-control rounded" placeholder="Search" />
-                <input type="submit" class="btn btn-outline-dark" value="Search" />
-            </form>
             <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
                 <!-- Loop through all of the events and display them -->
                 @foreach (var E in Model.Events)
                 {
-                    <a class="m-1">
+                    <a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">
                         <div class="row">
                             <div class="col text-right">
                                 <img src="~/Images/event.png" />
@@ -28,7 +23,7 @@
                                 <p class="text-black-50 m-0">Date: @E.Date</p>
                                 <p class="text-black-50 m-0">Time: @E.Time</p>
                                 <p class="text-black-50 m-0">Price: @E.Price.ToString("C")</p>
-                                <p class="text-black-50 m-0">Location: @E.City, @E.State)</p>
+                                <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
                             </div>
                         </div>
                     </a>
