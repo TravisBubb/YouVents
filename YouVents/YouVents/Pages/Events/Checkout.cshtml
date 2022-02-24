@@ -1,10 +1,10 @@
-﻿@page
+﻿@page "{id:int}/{num_tix:int}"
 @model YouVents.Pages.Events.Purchase.CheckoutModel
 @{
     ViewData["Title"] = "Checkout";
 }
 
-<head>
+@*<head>
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -14,7 +14,7 @@
         user-select: none;
       }
     </style>
-</head>
+</head>*@
 
 
     <!-- Custom styles for this template -->
@@ -31,20 +31,20 @@
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
-                                <h6 class="my-0">Event Name</h6>
+                                <h6 class="my-0">@Model.MyEvent.Name</h6>
                                 <small class="text-muted">Ticket Description</small>
                             </div>
-                            <span class="text-muted">$12</span>
+                            <span class="text-muted">@Model.MyEvent.Price.ToString("C") x @Model.NumTickets</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
                             <span>Total (USD)</span>
-                            <strong>$20</strong>
+                            <strong>@Model.TotalCost.ToString("C")</strong>
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Billing address</h4>
-                    <form class="needs-validation" novalidate>
+                    <form method="post" class="needs-validation" novalidate>
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">First name</label>
@@ -127,18 +127,6 @@
                                     Zip code required.
                                 </div>
                             </div>
-                        </div>
-
-                        <hr class="my-4">
-
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="same-address">
-                            <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
-                        </div>
-
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="save-info">
-                            <label class="form-check-label" for="save-info">Save this information for next time</label>
                         </div>
 
                         <hr class="my-4">
