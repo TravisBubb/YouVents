@@ -6,29 +6,66 @@
 
 <div class="container" style="min-height: 55vh;">
     <div class="row">
-        <!-- Main section to show events near the user (default sort by soonest date) -->
-        <div class="col-12 text-center">
-            <h4><u>Events Near you</u></h4>
-            <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
-                <!-- Loop through all of the events and display them -->
-                @foreach (var E in Model.Events)
-                {
-                    <a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">
-                        <div class="row">
-                            <div class="col text-right">
-                                <img src="~/Images/event.png" />
+        @if (HttpContext.User.Identity.IsAuthenticated && Model.user.AccountType == "Organizer")
+        {
+            <!-- Main section to show events near the user (default sort by soonest date) -->
+            <div class="col-5 text-center">
+                <h4><u>Events Near You</u></h4>
+                <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
+                    <!-- Loop through all of the events and display them -->
+                    @foreach (var E in Model.Events)
+                    {
+                        <a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">
+                            <div class="row">
+                                <div class="col text-right">
+                                    <img src="~/Images/event.png" />
+                                </div>
+                                <div class="col text-left">
+                                    <p class="m-0"><strong>@E.Name</strong></p>
+                                    <p class="text-black-50 m-0">Date: @E.Date</p>
+                                    <p class="text-black-50 m-0">Time: @E.Time</p>
+                                    <p class="text-black-50 m-0">Price: @E.Price.ToString("C")</p>
+                                    <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
+                                </div>
                             </div>
-                            <div class="col text-left">
-                                <p class="m-0"><strong>@E.Name</strong></p>
-                                <p class="text-black-50 m-0">Date: @E.Date</p>
-                                <p class="text-black-50 m-0">Time: @E.Time</p>
-                                <p class="text-black-50 m-0">Price: @E.Price.ToString("C")</p>
-                                <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
-                            </div>
-                        </div>
-                    </a>
-                }
+                        </a>
+                    }
+                </div>
             </div>
-        </div>
+            <div class="col-7 text-center">
+                <h4><u>Create Your Own Event</u></h4>
+                <p>Easily post your own events and sell tickets with YouVents.</p>
+                <p>With just a few clicks you can have your event up and running, and visible on our site.</p>
+                <a asp-page="/Events/Create"><input type="button" class="btn-lg btn-primary" value="Create a new Event" /></a>
+            </div>
+        }
+        else
+        {
+            <!-- Main section to show events near the user (default sort by soonest date) -->
+            <div class="col-12 text-center">
+                <h4><u>Events Near You</u></h4>
+                <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
+                    <!-- Loop through all of the events and display them -->
+                    @foreach (var E in Model.Events)
+                    {
+                        <a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">
+                            <div class="row">
+                                <div class="col text-right">
+                                    <img src="~/Images/event.png" />
+                                </div>
+                                <div class="col text-left">
+                                    <p class="m-0"><strong>@E.Name</strong></p>
+                                    <p class="text-black-50 m-0">Date: @E.Date</p>
+                                    <p class="text-black-50 m-0">Time: @E.Time</p>
+                                    <p class="text-black-50 m-0">Price: @E.Price.ToString("C")</p>
+                                    <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        }
+
     </div>
 </div>
