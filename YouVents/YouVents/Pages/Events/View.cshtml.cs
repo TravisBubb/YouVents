@@ -14,7 +14,7 @@ namespace YouVents.Pages.Events
     {
         public Event MyEvent { get; set; }
 
-        public IActionResult OnGet(int? id)
+        public IActionResult OnGet(int id)
         {
             if (id == null)
             {

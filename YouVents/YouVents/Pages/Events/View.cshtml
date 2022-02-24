@@ -1,4 +1,4 @@
-﻿@page "{id:int?}"
+﻿@page "{id:int}"
 @model YouVents.Pages.Events.ViewModel
 @{
     ViewData["Title"] = "View";
@@ -22,7 +22,7 @@
                     <p class="card-text"><b>Start Time:</b> @Model.MyEvent.Time</p>
                     <p class="card-text">
                         <b>Location</b>: @Model.MyEvent.Street, @Model.MyEvent.City,
-                        @Model.MyEvent.State, @Model.MyEvent
+                        @Model.MyEvent.State, @Model.MyEvent.Zip
                     </p>
                     <p class="card-text"><b>Ticket Price:</b> @Model.MyEvent.Price.ToString("C")</p>
                 </div>
