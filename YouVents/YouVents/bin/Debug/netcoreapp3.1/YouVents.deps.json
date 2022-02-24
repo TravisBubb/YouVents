@@ -26,6 +26,7 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.21",
           "Microsoft.AspNetCore.Identity.UI": "3.1.21",
+          "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "3.1.21",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.21",
           "Microsoft.EntityFrameworkCore.Sqlite": "3.1.21",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.21",
@@ -371,16 +372,47 @@
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Identity.UI.dll": {}
         }
       },
+      "Microsoft.AspNetCore.Mvc.Razor.Extensions/3.1.21": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Razor.Language": "3.1.21",
+          "Microsoft.CodeAnalysis.Razor": "3.1.21"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll": {
+            "assemblyVersion": "3.1.21.0",
+            "fileVersion": "3.100.2121.52205"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Mvc.Razor.Extensions.dll": {}
+        }
+      },
+      "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/3.1.21": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Mvc.Razor.Extensions": "3.1.21",
+          "Microsoft.CodeAnalysis.Razor": "3.1.21",
+          "Microsoft.Extensions.DependencyModel": "3.1.6"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll": {
+            "assemblyVersion": "3.1.21.0",
+            "fileVersion": "3.100.2121.52309"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Razor/2.2.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Html.Abstractions": "2.2.0"
         }
       },
-      "Microsoft.AspNetCore.Razor.Language/3.1.0": {
+      "Microsoft.AspNetCore.Razor.Language/3.1.21": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll": {
-            "assemblyVersion": "3.1.0.0",
-            "fileVersion": "3.100.19.56505"
+            "assemblyVersion": "3.1.21.0",
+            "fileVersion": "3.100.2121.52205"
           }
         },
         "compile": {
@@ -589,16 +621,16 @@
           "lib/netstandard2.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll": {}
         }
       },
-      "Microsoft.CodeAnalysis.Razor/3.1.0": {
+      "Microsoft.CodeAnalysis.Razor/3.1.21": {
         "dependencies": {
-          "Microsoft.AspNetCore.Razor.Language": "3.1.0",
+          "Microsoft.AspNetCore.Razor.Language": "3.1.21",
           "Microsoft.CodeAnalysis.CSharp": "3.3.1",
           "Microsoft.CodeAnalysis.Common": "3.3.1"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.CodeAnalysis.Razor.dll": {
-            "assemblyVersion": "3.1.0.0",
-            "fileVersion": "3.100.19.56505"
+            "assemblyVersion": "3.1.21.0",
+            "fileVersion": "3.100.2121.52205"
           }
         },
         "compile": {
@@ -1221,10 +1253,10 @@
       },
       "Microsoft.VisualStudio.Web.CodeGeneration.Templating/3.1.5": {
         "dependencies": {
-          "Microsoft.AspNetCore.Razor.Language": "3.1.0",
+          "Microsoft.AspNetCore.Razor.Language": "3.1.21",
           "Microsoft.AspNetCore.Razor.Runtime": "2.2.0",
           "Microsoft.CodeAnalysis.CSharp": "3.3.1",
-          "Microsoft.CodeAnalysis.Razor": "3.1.0",
+          "Microsoft.CodeAnalysis.Razor": "3.1.21",
           "Microsoft.VisualStudio.Web.CodeGeneration.Utils": "3.1.5"
         },
         "runtime": {
@@ -4126,6 +4158,20 @@
       "path": "microsoft.aspnetcore.identity.ui/3.1.21",
       "hashPath": "microsoft.aspnetcore.identity.ui.3.1.21.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Mvc.Razor.Extensions/3.1.21": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OBcnPPM8iIO2VcyY8zGHJDekRgVSyGBxA3Ug6T/vn1UA/Cd5pQZqCQzbhYmjcOp+nX9dHYOgClha9ecktWnC/A==",
+      "path": "microsoft.aspnetcore.mvc.razor.extensions/3.1.21",
+      "hashPath": "microsoft.aspnetcore.mvc.razor.extensions.3.1.21.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation/3.1.21": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Te80meZ3Jm16yGZ+/GlJ7Ma5ZJ84oZNRvWK+skXPIQ6g/Ctj92Yne1frrKRdkO59J3f581u4TOMe0HzYIrCw2A==",
+      "path": "microsoft.aspnetcore.mvc.razor.runtimecompilation/3.1.21",
+      "hashPath": "microsoft.aspnetcore.mvc.razor.runtimecompilation.3.1.21.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.Razor/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -4133,12 +4179,12 @@
       "path": "microsoft.aspnetcore.razor/2.2.0",
       "hashPath": "microsoft.aspnetcore.razor.2.2.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Razor.Language/3.1.0": {
+    "Microsoft.AspNetCore.Razor.Language/3.1.21": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-e/atqZ5CzmJWuG/yaYOzbWNON+oqNKfk1M/xTYW+hje/RoiUUjVP88wrX1s9rEHzaAU4UljIOSvMxLABc2X2gg==",
-      "path": "microsoft.aspnetcore.razor.language/3.1.0",
-      "hashPath": "microsoft.aspnetcore.razor.language.3.1.0.nupkg.sha512"
+      "sha512": "sha512-He0olZiajTg0S+9INI/f1Xi+V/TW6mmWm+ZLn4VNSATbO0xJNd+IfpyfTMjbYzhjAIC+hIrPNgpCvGKqjMpMjQ==",
+      "path": "microsoft.aspnetcore.razor.language/3.1.21",
+      "hashPath": "microsoft.aspnetcore.razor.language.3.1.21.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Runtime/2.2.0": {
       "type": "package",
@@ -4189,12 +4235,12 @@
       "path": "microsoft.codeanalysis.csharp.workspaces/3.3.1",
       "hashPath": "microsoft.codeanalysis.csharp.workspaces.3.3.1.nupkg.sha512"
     },
-    "Microsoft.CodeAnalysis.Razor/3.1.0": {
+    "Microsoft.CodeAnalysis.Razor/3.1.21": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-EI/9iVMneil8nZn7mqEujJvV63VRaz01Czc69NTrCQAh5CRfBvoeqBVsDx6oC9CIYla/AJYss+U4B/6Usecx7A==",
-      "path": "microsoft.codeanalysis.razor/3.1.0",
-      "hashPath": "microsoft.codeanalysis.razor.3.1.0.nupkg.sha512"
+      "sha512": "sha512-SASrz/PzGjGJf6i9aiUqoAioTcW9kuUFI5ZlcSDRwwL81E/IZYX/OY50fbfR2mX5AMjJ34PFr3larzlEhmqz9w==",
+      "path": "microsoft.codeanalysis.razor/3.1.21",
+      "hashPath": "microsoft.codeanalysis.razor.3.1.21.nupkg.sha512"
     },
     "Microsoft.CodeAnalysis.Workspaces.Common/3.3.1": {
       "type": "package",
