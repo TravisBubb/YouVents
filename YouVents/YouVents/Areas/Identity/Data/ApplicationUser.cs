@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace YouVents.Areas.Identity.Data
 {
-    // Add profile data for application users by adding properties to the ApplicationUser class
+    // Add profile data for application users
     public class ApplicationUser : IdentityUser
     {
         public string FirstName { get; set; }
