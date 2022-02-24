@@ -16,6 +16,44 @@ namespace YouVents.Pages.Events
     {
         public ApplicationUser user { get; set; }
 
+        [BindProperty]
+        public InputModel Input { get; set; }
+
+        public class InputModel
+        {
+            [Required]
+            public string Name { get; set; }
+
+            [Required]
+            public string Description { get; set; }
+
+            [Required]
+            [DataType(DataType.Date)]
+            public DateTime Date { get; set; }
+            
+            [Required]
+            [DataType(DataType.Time)]
+            public DateTime Time { get; set; }
+
+            public int Capacity { get; set; }
+            
+            [Required]
+            public string Street { get; set; }
+            
+            [Required]
+            public string City { get; set; }
+            
+            [Required]
+            public string State { get; set; }
+           
+            [Required]
+            public string Zip { get; set; }
+            
+            [Required]
+            public float Price { get; set; }
+        }
+
+
         public IActionResult OnGet()
         {
             // Verify that the user is an organizer
@@ -50,6 +88,11 @@ namespace YouVents.Pages.Events
             {
                 return RedirectToPage("/Events/Index");
             }
+        }
+
+        public IActionResult OnPost()
+        {
+            return RedirectToPage("/Events/CreationConfirmation");
         }
     }
 }

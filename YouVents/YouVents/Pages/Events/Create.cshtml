@@ -4,4 +4,103 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create new event!</h1>
+<div class="container">
+    <main>
+        <h3 class="mb-3">Create Event</h3>
+        <form method="post" class="needs-validation" novalidate>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-7">
+                    <div class="row g-3">
+                        <div class="col-sm-12">
+                            <label asp-for="Input.Name" class="form-label">Event Name:</label>
+                            <input asp-for="Input.Name" type="text" class="form-control" />
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label asp-for="Input.Description" class="form-label">Description:</label>
+                            <textarea asp-for="Input.Description" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="Input.Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label asp-for="Input.Capacity" class="form-label">Max Capacity (leave 0 for none):</label>
+                            <input asp-for="Input.Capacity" class="form-control w-25" type="number" value="0" />
+                            <span asp-validation-for="Input.Capacity" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label asp-for="Input.Price" class="form-label">Ticket Price:</label>
+                            <div class="input-group w-50">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input asp-for="Input.Price" type="text" placeholder="0.00" class="form-control">
+                            </div>
+                            <span asp-validation-for="Input.Price" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="row g-3">
+                        <div class="col-sm-12">
+                            <label asp-for="Input.Date" class="form-label">Date:</label>
+                            <input asp-for="Input.Date" type="date" class="form-control" />
+                            <span asp-validation-for="Input.Date" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label asp-for="Input.Time" class="form-label">Time:</label>
+                            <input asp-for="Input.Time" type="time" class="form-control" />
+                            <span asp-validation-for="Input.Time" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label asp-for="Input.Street" class="form-label">Street Address:</label>
+                            <input asp-for="Input.Street" type="text" class="form-control" />
+                            <span asp-validation-for="Input.Street" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label asp-for="Input.City" class="form-label">City:</label>
+                            <input asp-for="Input.City" type="text" class="form-control" />
+                            <span asp-validation-for="Input.City" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-sm-12 row">
+                            <div class="col-sm-6">
+                                <label asp-for="Input.State" class="form-label">State:</label>
+                                <select asp-for="Input.State" class="form-control">
+                                    <option>PA</option>
+                                    <option>OH</option>
+                                    <option>NY</option>
+                                    <option>MD</option>
+                                    <option>VA</option>
+                                </select>
+                                <span asp-validation-for="Input.State" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label asp-for="Input.Zip" class="form-label">Zip:</label>
+                                <input asp-for="Input.Zip" type="text" class="form-control" />
+                                <span asp-validation-for="Input.Zip" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 mt-2">
+                            <input class="btn btn-sm btn-primary" type="submit" value="Create" />
+                            <input class="btn btn-sm btn-light" type="button" value="Cancel" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
