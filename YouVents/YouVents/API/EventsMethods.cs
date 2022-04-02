@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using System;
 using System.Collections.Generic;
 using YouVents.Models;
 
@@ -84,6 +85,38 @@ namespace YouVents.API
             }
 
             return _Event;
+        }
+
+        // Insert a new Event into the database
+        public static void Create(Event e)
+        {
+            SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
+            connection.Open();
+            SqliteCommand insertion = new SqliteCommand("" +
+                "INSERT INTO Events (Name, Rating, Description, Date, Time, Capacity, Street, City, State, OrganizerId, Zip, Price) " +
+                "VALUES (@name,@rating,@description,@date,@time,@capacity,@street,@city,@state,@organizerId,@zip,@price)",
+                connection);
+            insertion.Parameters.Add(new SqliteParameter("@name", e.Name));
+            insertion.Parameters.Add(new SqliteParameter("@rating", e.Rating));
+            insertion.Parameters.Add(new SqliteParameter("@description", e.Description));
+            insertion.Parameters.Add(new SqliteParameter("@date", e.Date));
+            insertion.Parameters.Add(new SqliteParameter("@time", e.Time));
+            insertion.Parameters.Add(new SqliteParameter("@capacity", e.Capacity));
+            insertion.Parameters.Add(new SqliteParameter("@street", e.Street));
+            insertion.Parameters.Add(new SqliteParameter("@city", e.City));
+            insertion.Parameters.Add(new SqliteParameter("@state", e.State));
+            insertion.Parameters.Add(new SqliteParameter("@organizerId", e.OrganizerId));
+            insertion.Parameters.Add(new SqliteParameter("@zip", e.Zip));
+            insertion.Parameters.Add(new SqliteParameter("@price", e.Price));
+            try
+            {
+                insertion.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            connection.Close();
         }
     }
 }
