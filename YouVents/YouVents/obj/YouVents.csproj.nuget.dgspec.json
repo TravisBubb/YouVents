@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lildr\\Programming\\Capstone\\EventManager\\YouVents\\YouVents\\YouVents.csproj": {}
+    "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\YouVents.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lildr\\Programming\\Capstone\\EventManager\\YouVents\\YouVents\\YouVents.csproj": {
+    "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\YouVents.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lildr\\Programming\\Capstone\\EventManager\\YouVents\\YouVents\\YouVents.csproj",
+        "projectUniqueName": "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\YouVents.csproj",
         "projectName": "YouVents",
-        "projectPath": "C:\\Users\\lildr\\Programming\\Capstone\\EventManager\\YouVents\\YouVents\\YouVents.csproj",
+        "projectPath": "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\YouVents.csproj",
         "packagesPath": "C:\\Users\\lildr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lildr\\Programming\\Capstone\\EventManager\\YouVents\\YouVents\\obj\\",
+        "outputPath": "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

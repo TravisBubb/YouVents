@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LYsFEaFTwIE4kxZo/wbuupJdvLFpW4TJKHAiHWLHxFundobOu1n4bjKbOYlFRuRYnCyG4hphiMYH4Vj6RYtHuQ==",
+  "dgSpecHash": "2+g2qDS4CLYFy9mHaxbPSw4kHZUM2/TZMI/5qIaCoPB2vKXl9Kz6jgjLlMNme5+bnI2h0c1/+n/LtZfa4YLCTw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lildr\\Programming\\Capstone\\EventManager\\YouVents\\YouVents\\YouVents.csproj",
+  "projectFilePath": "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\YouVents.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\lildr\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.21\\microsoft.aspnetcore.cryptography.internal.3.1.21.nupkg.sha512",
     "C:\\Users\\lildr\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.21\\microsoft.aspnetcore.cryptography.keyderivation.3.1.21.nupkg.sha512",
