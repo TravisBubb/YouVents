@@ -9,7 +9,7 @@ namespace YouVents.API
     public static class UsersMethods
     {
         // Return an ApplicationUser object given a user's ID string
-        public static ApplicationUser GetUserById(string id)
+        public static ApplicationUser GetById(string id)
         {
             // User variable that will be populated and returned
             ApplicationUser user = null;

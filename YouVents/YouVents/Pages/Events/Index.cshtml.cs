@@ -21,7 +21,7 @@ namespace YouVents.Pages.Events
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 string userId = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
-                User = UsersMethods.GetUserById(userId);
+                User = UsersMethods.GetById(userId);
             }
             return Page();
         }
