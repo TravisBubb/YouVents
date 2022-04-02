@@ -8,24 +8,24 @@
 <div class="container">
     <div class="row">
         <div class="col-9 text-left">
-            <h1>@Model.MyEvent.Name</h1>
-            @*<img height="150" width="300" src="~/Images/event.png" />*@
+            <h1>@Model.Event.Name</h1>
+            @*<img height="150" width="300" src="~/images/event.png" />*@
             <br />
             <h4>Description</h4>
-            <p>@Model.MyEvent.Description</p>
+            <p>@Model.Event.Description</p>
         </div>
         <div class="col-3 text-left">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Details</h5>
-                    <p class="card-text"><b>Event Date</b>: @Model.MyEvent.Date</p>
-                    <p class="card-text"><b>Start Time:</b> @Model.MyEvent.Time</p>
+                    <p class="card-text"><b>Event Date</b>: @Model.Event.Date</p>
+                    <p class="card-text"><b>Start Time:</b> @Model.Event.Time</p>
                     <p class="card-text">
-                        <b>Location</b>: @Model.MyEvent.Street, @Model.MyEvent.City,
-                        @Model.MyEvent.State, @Model.MyEvent.Zip
+                        <b>Location</b>: @Model.Event.Street, @Model.Event.City,
+                        @Model.Event.State, @Model.Event.Zip
                     </p>
-                    <p class="card-text"><b>Ticket Price:</b> @Model.MyEvent.Price.ToString("C")</p>
-                    <form asp-route-id="@Model.MyEvent.Id" method="post">
+                    <p class="card-text"><b>Ticket Price:</b> @Model.Event.Price.ToString("C")</p>
+                    <form asp-route-id="@Model.Event.Id" method="post">
                         <label asp-for="NumTickets">Tickets:</label>
                         <input type="number" class="form-control" asp-for="NumTickets" />
                         <input type="submit" class="btn btn-lg btn-outline-primary" value="Checkout" />
