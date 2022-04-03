@@ -16,7 +16,7 @@ namespace YouVents.Pages.Events
 
         public IActionResult OnGet()
         {
-            Events = EventsMethods.GetAll();
+            Events = EventsMethods.GetAllFuture();
          
             if (HttpContext.User.Identity.IsAuthenticated)
             {
