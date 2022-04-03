@@ -8,6 +8,43 @@ namespace YouVents.API
     // Static class that holds all backend methods dealing with Event objects
     public static class EventsMethods
     {
+        // Sort a list of events by date and time in either ascending or descending order.
+        // Default ordering is ascending; set desc=false for descending order
+        private static void SortByDate(List<Event> events, bool desc = false)
+        {
+
+            // Sort the given list of events inplace based on date and time
+            events.Sort(delegate (Event x, Event y)
+            {
+                var xDate = Convert.ToDateTime(x.Date);
+                var yDate = Convert.ToDateTime(y.Date);
+                var xTime = Convert.ToDateTime(x.Time);
+                var yTime = Convert.ToDateTime(y.Time);
+
+                int rc = (DateTime.Compare(xDate, yDate));
+
+                // If different dates, then sort by date
+                if ((rc > 0 && !desc) || (rc < 0 && desc))
+                    return 1;
+
+                // If both dates the same, then compare times
+                else if (rc == 0)
+                {
+                    rc = DateTime.Compare(xTime, yTime);
+                    if ((rc > 0 && !desc) || (rc < 0 && desc))
+                        return 1;
+                    else if ((rc < 0 && !desc) || (rc > 0 && desc))
+                        return -1;
+                    else return 0;
+                }
+                
+                // If different dates, put them in reverse order
+                else return -1;
+            });
+
+        }
+
+
         // Return a list of all of the Event objects in the database
         public static List<Event> GetAll()
         {
@@ -46,6 +83,61 @@ namespace YouVents.API
                     }
                 }
             }
+            // Return the list of events that were returned -- all events in the db
+            return Events;
+        }
+
+        // Return a list of all of the Event objects in the database that have a date/time in the future
+        public static List<Event> GetAllFuture()
+        {
+            // Declare a list of Event objects - to be returned
+            List<Event> Events = new List<Event>();
+
+            using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
+            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM Events", connection);
+            connection.Open();
+            using (SqliteDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if there are any rows to read, given the above query
+                if (reader.HasRows)
+                {
+                    // Get the current date and time
+                    DateTime now = DateTime.Now;
+
+                    // Loop through each row in the query result
+                    while (reader.Read())
+                    {
+                        // Compare the Event's date and time to the current date and time
+                        DateTime date = Convert.ToDateTime(reader.GetString(reader.GetOrdinal("Date")));
+                        DateTime time = Convert.ToDateTime(reader.GetString(reader.GetOrdinal("Time")));
+                        int rc = DateTime.Compare(now.Date, date);
+                        if ((rc < 0) || (rc == 0 && DateTime.Compare(now.ToLocalTime(), time) < 0))
+                        {
+                            // Create an event object and add it to the list
+                            Event MyEvent = new Event
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                OrganizerId = reader.GetString(reader.GetOrdinal("OrganizerId")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Rating = reader.GetInt32(reader.GetOrdinal("Rating")),
+                                Description = reader.GetString(reader.GetOrdinal("Description")),
+                                Date = Convert.ToString(date),
+                                Time = Convert.ToString(time),
+                                Capacity = reader.GetInt32(reader.GetOrdinal("Capacity")),
+                                Street = reader.GetString(reader.GetOrdinal("Street")),
+                                City = reader.GetString(reader.GetOrdinal("City")),
+                                State = reader.GetString(reader.GetOrdinal("State")),
+                                Zip = reader.GetString(reader.GetOrdinal("Zip")),
+                                Price = reader.GetFloat(reader.GetOrdinal("Price"))
+                            };
+                            Events.Add(MyEvent);
+                        }
+                    }
+                }
+            }
+            // Sort the list of events by date and time in ascending order
+            SortByDate(Events);
+
             // Return the list of events that were returned -- all events in the db
             return Events;
         }
