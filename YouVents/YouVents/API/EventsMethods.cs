@@ -185,8 +185,8 @@ namespace YouVents.API
             SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
             connection.Open();
             SqliteCommand insertion = new SqliteCommand("" +
-                "INSERT INTO Events (Name, Rating, Description, Date, Time, Capacity, Street, City, State, OrganizerId, Zip, Price) " +
-                "VALUES (@name,@rating,@description,@date,@time,@capacity,@street,@city,@state,@organizerId,@zip,@price)",
+                "INSERT INTO Events (Name, Rating, Description, Date, Time, Capacity, Street, City, State, OrganizerId, Zip, Price, Type) " +
+                "VALUES (@name,@rating,@description,@date,@time,@capacity,@street,@city,@state,@organizerId,@zip,@price,@type)",
                 connection);
             insertion.Parameters.Add(new SqliteParameter("@name", e.Name));
             insertion.Parameters.Add(new SqliteParameter("@rating", e.Rating));
@@ -200,6 +200,7 @@ namespace YouVents.API
             insertion.Parameters.Add(new SqliteParameter("@organizerId", e.OrganizerId));
             insertion.Parameters.Add(new SqliteParameter("@zip", e.Zip));
             insertion.Parameters.Add(new SqliteParameter("@price", e.Price));
+            insertion.Parameters.Add(new SqliteParameter("@type", e.Type));
             try
             {
                 insertion.ExecuteNonQuery();
@@ -209,6 +210,28 @@ namespace YouVents.API
                 throw new Exception(ex.Message);
             }
             connection.Close();
+        }
+
+        // Return all of the different available types of events -- list of strings
+        public static List<string> GetAllTypes()
+        {
+            List<string> Types = new List<string>();
+
+            using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
+            using SqliteCommand cmd = new SqliteCommand($"SELECT * FROM EventTypes", connection);
+            connection.Open();
+            using (SqliteDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Types.Add(reader.GetString(reader.GetOrdinal("Type")));
+                    }
+                }
+            }
+
+            return Types;
         }
     }
 }

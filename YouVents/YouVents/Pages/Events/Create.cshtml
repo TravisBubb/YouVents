@@ -31,6 +31,20 @@
                             <span asp-validation-for="Input.Capacity" class="text-danger"></span>
                         </div>
 
+                        <!-- Dropdown to select one of the several given event types -->
+                        <div class="col-sm-6">
+                            <label asp-for="Input.Type" class="form-label">Event Type:</label>
+                            <select asp-for="Input.Type" class="form-control">
+                                @foreach (var type in Model.AllTypes)
+                                {
+                                    <option>@type</option>
+                                }
+
+                            </select>
+                            <span asp-validation-for="Input.Type" class="text-danger"></span>
+                        </div>
+
+
                         <div class="col-sm-6">
                             <label asp-for="Input.Price" class="form-label">Ticket Price:</label>
                             <div class="input-group w-50">

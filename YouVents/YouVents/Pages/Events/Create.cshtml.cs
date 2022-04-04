@@ -16,7 +16,8 @@ namespace YouVents.Pages.Events
 {
     public class CreateModel : PageModel
     {
-        public new ApplicationUser User { get; set; }
+        public ApplicationUser User;
+        public List<string> AllTypes = EventsMethods.GetAllTypes();
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -57,6 +58,8 @@ namespace YouVents.Pages.Events
 
             [Required]
             public int Rating { get; set; }
+
+            public string Type { get; set; }
         }
 
         // On a Get action, simply load the page if the user is an organizer
@@ -98,7 +101,8 @@ namespace YouVents.Pages.Events
                 State = Input.State,
                 OrganizerId = userId,
                 Zip = Input.Zip,
-                Price = Input.Price
+                Price = Input.Price,
+                Type = Input.Type
             };
 
             // Try to insert the event into the database
