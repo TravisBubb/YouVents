@@ -2,6 +2,7 @@
 @model YouVents.Pages.Events.IndexModel
 @{
     ViewData["Title"] = "Events";
+    var Culture = new System.Globalization.CultureInfo("en-US");
 }
 
 <div class="container" style="min-height: 55vh;">
@@ -22,9 +23,9 @@
                                 </div>
                                 <div class="col text-left">
                                     <p class="m-0"><strong>@E.Name</strong></p>
-                                    <p class="text-black-50 m-0">Date: @E.Date</p>
-                                    <p class="text-black-50 m-0">Time: @E.Time</p>
-                                    <p class="text-black-50 m-0">Price: @E.Price.ToString("C")</p>
+                                    <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
+                                    <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
+                                    <p class="text-black-50 m-0">Price: @E.Price.ToString("C", Culture)</p>
                                     <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
                                 </div>
                             </div>
@@ -55,9 +56,9 @@
                                 </div>
                                 <div class="col text-left">
                                     <p class="m-0"><strong>@E.Name</strong></p>
-                                    <p class="text-black-50 m-0">Date: @E.Date</p>
-                                    <p class="text-black-50 m-0">Time: @E.Time</p>
-                                    <p class="text-black-50 m-0">Price: @E.Price.ToString("C")</p>
+                                    <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
+                                    <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
+                                    <p class="text-black-50 m-0">Price: @E.Price.ToString("C", Culture)</p>
                                     <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
                                 </div>
                             </div>
