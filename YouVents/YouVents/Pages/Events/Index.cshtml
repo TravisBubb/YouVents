@@ -45,7 +45,10 @@
             <!-- Main section to show events near the user (default sort by soonest date) -->
             <div class="col-12 text-center">
                 <h4><u>Events Near You</u></h4>
-                <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
+                <br />
+                <partial name="_FilterEvents" />
+                <br />
+                <div id="EventList" style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
                     <!-- Loop through all of the events and display them -->
                     @foreach (var E in Model.Events)
                     {
