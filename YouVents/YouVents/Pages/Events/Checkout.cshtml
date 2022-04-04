@@ -2,6 +2,8 @@
 @model YouVents.Pages.Events.Purchase.CheckoutModel
 @{
     ViewData["Title"] = "Checkout";
+    var Culture = new System.Globalization.CultureInfo("en-US");
+
 }
 
 <div class="container">
@@ -18,7 +20,7 @@
                             <h6 class="my-0">@Model.Event.Name</h6>
                             <small class="text-muted">Ticket Description</small>
                         </div>
-                        <span class="text-muted">@Model.Event.Price.ToString("C") x @Model.NumTickets</span>
+                        <span class="text-muted">@Model.Event.Price.ToString("C", Culture) x @Model.NumTickets</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Total (USD)</span>

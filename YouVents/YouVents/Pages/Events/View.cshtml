@@ -2,6 +2,7 @@
 @model YouVents.Pages.Events.ViewModel
 @{
     ViewData["Title"] = "View";
+    var Culture = new System.Globalization.CultureInfo("en-US");
 }
 
 
@@ -24,7 +25,7 @@
                         <b>Location</b>: @Model.Event.Street, @Model.Event.City,
                         @Model.Event.State, @Model.Event.Zip
                     </p>
-                    <p class="card-text"><b>Ticket Price:</b> @Model.Event.Price.ToString("C")</p>
+                    <p class="card-text"><b>Ticket Price:</b> @Model.Event.Price.ToString("C", Culture)</p>
                     <form asp-route-id="@Model.Event.Id" method="post">
                         <label asp-for="NumTickets">Tickets:</label>
                         <input type="number" class="form-control" asp-for="NumTickets" />
