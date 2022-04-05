@@ -1,0 +1,9 @@
+﻿@page "{id:int}"
+@model YouVents.Pages.Events.EditModel
+@{
+    ViewData["Title"] = "Edit";
+    var Culture = new System.Globalization.CultureInfo("en-US");
+}
+
+<h1>Editing event: @Model.Event.Name</h1>
+

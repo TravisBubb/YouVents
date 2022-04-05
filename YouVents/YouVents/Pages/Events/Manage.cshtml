@@ -2,7 +2,34 @@
 @model YouVents.Pages.Events.ManageModel
 @{
     ViewData["Title"] = "Manage";
+    var Culture = new System.Globalization.CultureInfo("en-US");
 }
 
-<h1>Manage</h1>
+<div class="container" style="min-height: 55vh; border-style: solid; border-color: grey; border-width: 1px; border-radius: 5px;">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="my-3">My Events</h2>
+            <div id="EventList" class="mt-4">
+                <!-- Loop through all of the events and display them -->
+                @foreach (var E in Model.Events)
+                {
+                    <a asp-page="/Events/Edit" asp-route-id="@E.Id">
+                        <div class="row">
+                            <div class="col text-right">
+                                <img src="~/images/event.png" />
+                            </div>
+                            <div class="col text-left">
+                                <p class="m-0"><strong>@E.Name</strong></p>
+                                <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
+                                <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
+                                <p class="text-black-50 m-0">Price: @E.Price.ToString("C", Culture)</p>
+                                <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
 
