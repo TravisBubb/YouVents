@@ -76,7 +76,7 @@ body {
 /* EventList div - contains all of the event listings */
 #EventList {
     max-height: 65vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
