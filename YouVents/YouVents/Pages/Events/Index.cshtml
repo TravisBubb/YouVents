@@ -5,71 +5,69 @@
     var Culture = new System.Globalization.CultureInfo("en-US");
 }
 
-<div class="container" style="min-height: 55vh;">
-    <div class="row">
-        @if (HttpContext.User.Identity.IsAuthenticated && Model.User.AccountType == "Organizer")
-        {
+<!--<div class="container" style="min-height: 55vh; border-style: groove; border-color: grey; border-width: 5px; border-radius: 5px;">
+    <div class="row">-->
+        @*@if (HttpContext.User.Identity.IsAuthenticated && Model.User.AccountType == "Organizer")*@
+        <!--{-->
             <!-- Main section to show events near the user (default sort by soonest date) -->
-            <div class="col-5 text-center">
-                <h4><u>Events Near You</u></h4>
-                <div style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
+            <!--<div class="col-5 text-center">
+                <h2 class="my-3">Events Near You</h2>
+                <partial name="_FilterEvents" />
+                <div id="EventList">-->
                     <!-- Loop through all of the events and display them -->
-                    @foreach (var E in Model.Events)
-                    {
-                        <a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">
-                            <div class="row">
+                    @*@foreach (var E in Model.Events)*@
+                    <!--{-->
+                        @*<a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">*@
+                            <!--<div class="row">
                                 <div class="col text-right">
                                     <img src="~/images/event.png" />
                                 </div>
-                                <div class="col text-left">
-                                    <p class="m-0"><strong>@E.Name</strong></p>
+                                <div class="col text-left">-->
+                                    @*<p class="m-0"><strong>@E.Name</strong></p>
                                     <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
                                     <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
                                     <p class="text-black-50 m-0">Price: @E.Price.ToString("C", Culture)</p>
                                     <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
-                                </div>
-                            </div>
+                                </div>*@
+                            <!--</div>
                         </a>
                     }
                 </div>
             </div>
             <div class="col-7 text-center">
-                <h4><u>Create Your Own Event</u></h4>
+                <h2 class="my-2">Create Your Own Event</h2>
                 <p>Easily post your own events and sell tickets with YouVents.</p>
                 <p>With just a few clicks you can have your event up and running, and visible on our site.</p>
                 <a asp-page="/Events/Create"><input type="button" class="btn-lg btn-primary" value="Create a new Event" /></a>
             </div>
         }
         else
-        {
+        {-->
             <!-- Main section to show events near the user (default sort by soonest date) -->
-            <div class="col-12 text-center">
-                <h4><u>Events Near You</u></h4>
-                <br />
+            <!--<div class="col-12 text-center">
+                <h2 class="my-3">Events Near You</h2>
                 <partial name="_FilterEvents" />
-                <br />
-                <div id="EventList" style="max-height: 65vh; overflow-y: auto; overflow-x: hidden;">
+                <div id="EventList">-->
                     <!-- Loop through all of the events and display them -->
-                    @foreach (var E in Model.Events)
-                    {
-                        <a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">
-                            <div class="row">
+                    @*@foreach (var E in Model.Events)*@
+                    <!--{-->
+                        @*<a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">*@
+                            <!--<div class="row">
                                 <div class="col text-right">
                                     <img src="~/images/event.png" />
                                 </div>
-                                <div class="col text-left">
-                                    <p class="m-0"><strong>@E.Name</strong></p>
-                                    <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
+                                <div class="col text-left">-->
+                                    @*<p class="m-0"><strong>@E.Name</strong></p>*@
+                                    @*<p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
                                     <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
                                     <p class="text-black-50 m-0">Price: @E.Price.ToString("C", Culture)</p>
-                                    <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
-                                </div>
+                                    <p class="text-black-50 m-0">Location: @E.City, @E.State</p>*@
+                                <!--</div>
                             </div>
                         </a>
                     }
                 </div>
             </div>
         }
-
     </div>
-</div>
+</div>-->

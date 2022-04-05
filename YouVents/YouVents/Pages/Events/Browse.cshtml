@@ -1,0 +1,37 @@
+﻿@page
+@model YouVents.Pages.Events.BrowseModel
+@{
+    ViewData["Title"] = "Browse";
+    var Culture = new System.Globalization.CultureInfo("en-US");
+}
+
+
+<div class="container" style="min-height: 55vh; border-style: groove; border-color: grey; border-width: 5px; border-radius: 5px;">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="my-3">Events Near You</h2>
+            <partial name="_FilterEvents" />
+            <div id="EventList">
+                <!-- Loop through all of the events and display them -->
+                @foreach (var E in Model.Events)
+                {
+                    <a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">
+                        <div class="row">
+                            <div class="col text-right">
+                                <img src="~/images/event.png" />
+                            </div>
+                            <div class="col text-left">
+                                <p class="m-0"><strong>@E.Name</strong></p>
+                                <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
+                                <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
+                                <p class="text-black-50 m-0">Price: @E.Price.ToString("C", Culture)</p>
+                                <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

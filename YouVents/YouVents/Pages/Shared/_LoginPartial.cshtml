@@ -7,6 +7,15 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
+        /* If the user is an organizer, then include an extra link to the manage events page */
+        ApplicationUser user = await @UserManager.FindByNameAsync(User.Identity.Name);
+        if (user.AccountType == "Organizer")
+        {
+            <li class="nav-item">
+                <a id="myEvents" class="nav-link text-dark" asp-page="/Events/Manage">My Listings</a>
+            </li>
+        }
+
         <li class="nav-item">
             @*<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>*@
             <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>
