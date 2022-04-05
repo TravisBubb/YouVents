@@ -6,16 +6,17 @@
 }
 
 
-<div class="container" style="min-height: 55vh; border-style: groove; border-color: grey; border-width: 5px; border-radius: 5px;">
+<div class="container" style="min-height: 55vh; border-style: solid; border-color: grey; border-width: 1px; border-radius: 5px;">
     <div class="row">
         <div class="col-12 text-center">
             <h2 class="my-3">Events Near You</h2>
+            <!-- Inlclude the partial page containing the search bar and filtering features -->
             <partial name="_FilterEvents" />
-            <div id="EventList">
+            <div id="EventList" class="mt-4">
                 <!-- Loop through all of the events and display them -->
                 @foreach (var E in Model.Events)
                 {
-                    <a asp-page="/Events/View" asp-route-id="@E.Id" class="m-1">
+                    <a asp-page="/Events/View" asp-route-id="@E.Id">
                         <div class="row">
                             <div class="col text-right">
                                 <img src="~/images/event.png" />
