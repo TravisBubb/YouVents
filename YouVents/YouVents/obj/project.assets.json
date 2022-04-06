@@ -9142,23 +9142,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\lildr\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Andrew\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\YouVents.csproj",
+      "projectUniqueName": "D:\\Lessons\\Kutztown\\OneDrive - Kutztown University\\0This Semester\\CSC355_Software_Engineeting_II\\YouVents-main\\GitYouVents\\YouVents\\YouVents\\YouVents\\YouVents.csproj",
       "projectName": "YouVents",
-      "projectPath": "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\YouVents.csproj",
-      "packagesPath": "C:\\Users\\lildr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\lildr\\Programming\\YouVents\\YouVents\\YouVents\\obj\\",
+      "projectPath": "D:\\Lessons\\Kutztown\\OneDrive - Kutztown University\\0This Semester\\CSC355_Software_Engineeting_II\\YouVents-main\\GitYouVents\\YouVents\\YouVents\\YouVents\\YouVents.csproj",
+      "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
+      "outputPath": "D:\\Lessons\\Kutztown\\OneDrive - Kutztown University\\0This Semester\\CSC355_Software_Engineeting_II\\YouVents-main\\GitYouVents\\YouVents\\YouVents\\YouVents\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\lildr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9170,6 +9166,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -9181,6 +9178,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
@@ -9231,7 +9229,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
