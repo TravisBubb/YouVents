@@ -281,13 +281,22 @@ namespace YouVents.API
         }
 
         // Return all future events given a specific info
-        public static List<Event> EventsQuery(Event e) {
+        public static List<Event> EventsQuery(string city, float price, string date) {
             // Declare a list of Event objects - to be returned
             List<Event> Events = new List<Event>();
-
+            SqliteCommand cmd;
             using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
-            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM Events WHERE Price < @Price AND UPPER(City) LIKE UPPER('@City')", connection);
-            //cmd.Parameters.Add(new SqliteParameter("@orgId", orgId));
+            if (date == "01/01/0001") { //default if date filter is empty
+                cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city)", connection);
+                cmd.Parameters.Add(new SqliteParameter("@city", city));
+                cmd.Parameters.Add(new SqliteParameter("@price", price));
+            }
+            else {
+                cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city) AND date = @date", connection);
+                cmd.Parameters.Add(new SqliteParameter("@city", city));
+                cmd.Parameters.Add(new SqliteParameter("@price", price));
+                cmd.Parameters.Add(new SqliteParameter("@date", date));
+            }
             connection.Open();
             using (SqliteDataReader reader = cmd.ExecuteReader()) {
                 // Check if there are any rows to read, given the above query

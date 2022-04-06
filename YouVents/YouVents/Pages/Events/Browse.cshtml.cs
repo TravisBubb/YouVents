@@ -15,6 +15,8 @@ namespace YouVents.Pages.Events
         public List<Event> Events { get; set; }
         public int NumTickets { get; set; }
         public new ApplicationUser User { get; set; }
+
+        [BindProperty]
         public InputModel Input { get; set; }
 
         public IActionResult OnGet()
@@ -32,49 +34,26 @@ namespace YouVents.Pages.Events
 
             public string Name { get; set; }
 
-            public string Description { get; set; }
-
             [DataType(DataType.Date)]
             public DateTime Date { get; set; }
 
-            [DataType(DataType.Time)]
-            public DateTime Time { get; set; }
-
-            public int Capacity { get; set; }
-
-            public string Street { get; set; }
-
             public string City { get; set; }
 
-            public string State { get; set; }
-
-            public string Zip { get; set; }
-
             public float Price { get; set; }
-
-            public int Rating { get; set; }
-
-            public string Type { get; set; }
         }
         //Testing EventsQuery-->
         public IActionResult OnPost() {
 
-            Event e = new Event {
-                Name = Input.Name,
-                Rating = Input.Rating,
-                Description = Input.Description,
-                Date = Input.Date.ToString("ddd, dd MMM yyyy"),
-                Time = Input.Time.ToString("hh:mm tt"),
-                Capacity = Input.Capacity,
-                Street = Input.Street,
-                City = Input.City,
-                State = Input.State,
-                Zip = Input.Zip,
-                Price = Input.Price,
-                Type = Input.Type
-            };
 
-            EventsMethods.EventsQuery(e);
+            string city = Input.City != null ? Input.City : "%";
+            city = "%" + city + "%";
+
+            float price = Input.Price != 0 ? Input.Price : float.MaxValue;
+
+            string date = Input.Date.ToString("MM/dd/yyyy");
+    
+
+            Events = EventsMethods.EventsQuery(city, price, date);
             return Page();
         
         }

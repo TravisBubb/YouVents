@@ -16,14 +16,13 @@
             <div class="container row">
                 <div class="col-1"></div>
                 <div class="col-10 row">
-                    <div class="col-12">
+                    <form id="FilterForm" method="post"><div class="col-12">
                         <input class="form-control" id="EventSearch" type="text" placeholder="Search events..." />
                         <div class="row text-left my-3">
                             <div class="col-2" style="font-size:1.5em;">Filter By:</div>
 
                             <div class="col-3">
                                 <input asp-for="Input.Date" id="DateSearch" type="date" placeholder="date" class="form-control" />
-                                <span asp-validation-for="Input.Date" class="text-danger"></span>
                             </div>
 
                             <div class="col-2">
@@ -33,20 +32,26 @@
                                     </div>
                                     <input asp-for="Input.Price" id="PriceSearch" type="text" placeholder="Price" class="form-control">
                                 </div>
-                                <span asp-validation-for="Input.Price" class="text-danger"></span>
                             </div>
 
-                            <div class="col-3">
+                            <div class="col-2">
                                 <input asp-for="Input.City" id="CitySearch" type="text" placeholder="City" class="form-control" />
-                                <span asp-validation-for="Input.City" class="text-danger"></span>
                             </div>
 
                             <div>
-                                <input class="btn btn-success" id="FilterBtn" type="submit" value="Apply Filters" />
+                                <input class="btn btn-success" id="FilterBtn" type="submit" value="Apply" />
+                                <!--<input class="btn btn-secondary" id="ClearFilterBtn" type="reset" value="Clear" /> --!>
+                            </div>
+                            <div class="col-2">
+                                <select id="SortBy" class="input-sm form-control">
+                                    <option>Sort By</option>
+                                    <option>Price</option>
+                                    <option>Date</option>
+                                </select>
                             </div>
 
                         </div>
-                    </div>
+                    </div></form>
                     @*
                         <div class="col-3">
                         <input class="form-control" id="ZipSearch" type="text" placeholder="Zip code">
