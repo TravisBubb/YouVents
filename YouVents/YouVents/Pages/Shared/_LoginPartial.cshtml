@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using YouVents.API
 @using YouVents.Areas.Identity.Data
 
 @inject SignInManager<ApplicationUser> SignInManager
@@ -8,7 +9,8 @@
     @if (SignInManager.IsSignedIn(User))
     {
         /* If the user is an organizer, then include an extra link to the manage events page */
-        ApplicationUser user = await @UserManager.FindByNameAsync(User.Identity.Name);
+        //ApplicationUser user2 = await @UserManager.FindByNameAsync(User.Identity.Name);
+        var user = await @UserManager.GetUserAsync(User);
         if (user.AccountType == "Organizer")
         {
             <li class="nav-item">
@@ -18,7 +20,7 @@
 
         <li class="nav-item">
             @*<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>*@
-            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Account</a>
+            <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@user.UserName</a>
         </li>
         <li class="nav-item">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">

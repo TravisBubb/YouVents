@@ -16,83 +16,86 @@
             <div class="container row">
                 <div class="col-1"></div>
                 <div class="col-10 row">
-                    <form id="FilterForm" method="post"><div class="col-12">
-                        <input class="form-control" id="EventSearch" type="text" placeholder="Search events..." />
-                        <div class="row text-left my-3">
-                            <div class="col-2" style="font-size:1.5em;">Filter By:</div>
+                    <form id="FilterForm" method="post">
+                        <div class="col-12">
+                            <input class="form-control" id="EventSearch" type="text" placeholder="Search events..." />
+                            <div class="row text-left my-3">
+                                <div class="col-2" style="font-size:1.5em;">Filter By:</div>
 
-                            <div class="col-3">
-                                <input asp-for="Input.Date" id="DateSearch" type="date" placeholder="date" class="form-control" />
-                            </div>
-
-                            <div class="col-2">
-                                <div class="input-group w-100">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">$</span>
-                                    </div>
-                                    <input asp-for="Input.Price" id="PriceSearch" type="text" placeholder="Price" class="form-control">
+                                <div class="col-3">
+                                    <input asp-for="Input.Date" id="DateSearch" type="date" placeholder="date" class="form-control" />
                                 </div>
-                            </div>
 
-                            <div class="col-2">
-                                <input asp-for="Input.City" id="CitySearch" type="text" placeholder="City" class="form-control" />
-                            </div>
+                                <div class="col-2">
+                                    <div class="input-group w-100">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">$</span>
+                                        </div>
+                                        <input asp-for="Input.Price" id="PriceSearch" type="text" placeholder="Price" class="form-control">
+                                    </div>
+                                </div>
 
-                            <div>
-                                <input class="btn btn-success" id="FilterBtn" type="submit" value="Apply" />
-                                <!--<input class="btn btn-secondary" id="ClearFilterBtn" type="reset" value="Clear" /> --!>
-                            </div>
-                            <div class="col-2">
-                                <select id="SortBy" class="input-sm form-control">
-                                    <option>Sort By</option>
-                                    <option>Price</option>
-                                    <option>Date</option>
-                                </select>
-                            </div>
+                                <div class="col-2">
+                                    <input asp-for="Input.City" id="CitySearch" type="text" placeholder="City" class="form-control" />
+                                </div>
 
-                        </div>
-                    </div></form>
+                                <div>
+                                    <input class="btn btn-success" id="FilterBtn" type="submit" value="Apply" />
+                                    <!--<input class="btn btn-secondary" id="ClearFilterBtn" type="reset" value="Clear" /> --!>
+                                                                                                    </div>
+                                                                                                    <div class="col-2">
+                                                                                                        <select id="SortBy" class="input-sm form-control">
+                                                                                                            <option>Sort By</option>
+                                                                                                            <option>Price</option>
+                                                                                                            <option>Date</option>
+                                                                                                        </select>
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div></form>
                     @*
                         <div class="col-3">
                         <input class="form-control" id="ZipSearch" type="text" placeholder="Zip code">
 
                         </div>*@
-                </div>
-                <div class="col-1"></div>
-            </div>
+                                                                                        </div>
+                                                                                        <div class="col-1"></div>
+                                                                                    </div>
 
-            <!--end of filtering-->
+                                                                                    <!--end of filtering-->
 
-            <div id="EventList" class="mt-4">
-                <!-- Loop through all of the events and display them -->
+                                    <div id="EventList" class="mt-4">
+                                        <!-- Loop through all of the events and display them -->
                 @foreach (var E in Model.Events) {
 
-                    <a asp-page="/Events/View" asp-route-id="@E.Id">
-                        
-                        <div class="row">
- 
-                            <!-- if (document.getElementByID("CitySearch").value == @E.City){        Not sure how to get this to work yet--> 
+                                            <a asp-page="/Events/View" asp-route-id="@E.Id">
 
-                            <div class="col text-right">
-                                <img src="~/images/event.png" />
-                            </div>
-                            <div class="col text-left">
-                                <p class="m-0"><strong>@E.Name</strong></p>
-                                <p class="text-black-50 m-0" id="Date">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
-                                <p class="text-black-50 m-0" id="Time">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
-                                <p class="text-black-50 m-0" id="Price">Price: @E.Price.ToString("C", Culture)</p>
-                                <p class="text-black-50 m-0" id="Location">Location: @E.City, @E.State</p>
+                                                <div class="row">
+
+                                                    <!-- if (document.getElementByID("CitySearch").value == @E.City){        Not sure how to get this to work yet-->
+
+                                                <div class="col text-right">
+                                                        <img src="~/images/event.png" />
+                                                    </div>
+                                                    <div class="col text-left">
+                                                        <p class="m-0"><strong>@E.Name</strong></p>
+                                                        <p class="text-black-50 m-0" id="Date">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
+                                                        <p class="text-black-50 m-0" id="Time">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
+                                                        <p class="text-black-50 m-0" id="Price">Price: @E.Price.ToString("C", Culture)</p>
+                                                        <p class="text-black-50 m-0" id="Location">Location: @E.City, @E.State</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                }
+                                    </div>
+                                    <!-- Testing EventsQuery-->
+                                    <!-- end of EventsQuery Testing-->
+                                </div>
                             </div>
                         </div>
-                    </a>
-                          
-                }
+                </div>
             </div>
-            <!-- Testing EventsQuery-->
-
-            
-
-            <!-- end of EventsQuery Testing-->
         </div>
     </div>
 </div>
