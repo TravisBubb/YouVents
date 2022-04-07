@@ -5,5 +5,102 @@
     var Culture = new System.Globalization.CultureInfo("en-US");
 }
 
-<h1>Editing event: @Model.Event.Name</h1>
+<div class="container">
+    <form method="post" class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-8 text-left">
+                <label class="form-label h4">Event Name</label>
+                <input asp-for="Input.Name" type="text" class="form-control" value="@Model.Event.Name" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+                @*<img height="150" width="300" src="~/images/event.png" />*@
+                <br />
+                <h4>Description</h4>
+                <textarea asp-for="Input.Description" class="form-control" rows="8">@Model.Event.Description</textarea>
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+            <div class="col-4 text-left pl-5">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">Details</h4>
+                        <p class="card-text">
+                            <b>Date:</b>
+                            <input asp-for="Input.Date" type="date" value="@Convert.ToDateTime(Model.Event.Date).ToString("yyyy-MM-dd")" class="form-control" />
+                            <span asp-validation-for="Input.Date" class="text-danger"></span>
+                        </p>
+                        <p class="card-text">
+                            <b>Start Time:</b>
+                            <input asp-for="Input.Time" type="time" class="form-control w-75" value="@Convert.ToDateTime(Model.Event.Time).ToString("HH:mm")" />
+                            <span asp-validation-for="Input.Time" class="text-danger"></span>
+                        </p>
 
+                        <p class="card-text">
+                            <b>Street Address:</b>
+                            <input asp-for="Input.Street" type="text" class="form-control" value="@Model.Event.Street" />
+                            <span asp-validation-for="Input.Street" class="text-danger"></span>
+                        </p>
+
+                        <p class="card-text">
+                            <b>City:</b>
+                            <input asp-for="Input.City" type="text" class="form-control" value="@Model.Event.City" />
+                            <span asp-validation-for="Input.City" class="text-danger"></span>
+                        </p>
+
+                        <p class="card-text">
+                            <b>State:</b>
+                            <select asp-for="Input.State" class="form-control w-50">
+                                <option selected>@Model.Event.State</option>
+                                @foreach (var state in Model.AllStates)
+                                {
+                                    if (state != Model.Event.State)
+                                    {
+                                        <option>@state</option>
+                                    }
+                                }
+                            </select>
+                            <span asp-validation-for="Input.State" class="text-danger"></span>
+                        </p>
+                        <p class="card-text">
+                            <b>Zip:</b>
+                            <input asp-for="Input.Zip" type="text" class="form-control w-50" value="@Model.Event.Zip" />
+                            <span asp-validation-for="Input.Zip" class="text-danger"></span>
+                        </p>
+
+                        <p class="card-text">
+                            <b>Event Type:</b>
+                            <select asp-for="Input.Type" class="form-control w-50">
+                                <option selected>@Model.Event.Type</option>
+                                @foreach (var type in Model.AllTypes)
+                                {
+                                    if (type != Model.Event.Type)
+                                    {
+                                        <option>@type</option>
+                                    }
+                                }
+
+                            </select>
+                        </p>
+                        <p class="card-text">
+                            <b>Capacity:</b>
+                            <input asp-for="Input.Capacity" class="form-control w-50" type="text" value="@Model.Event.Capacity.ToString("N0")" />
+                            <span asp-validation-for="Input.Capacity" class="text-danger"></span>
+                        </p>
+                        <p class="card-text">
+                            <b>Ticket Price:</b><div class="input-group w-50">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input asp-for="Input.Price" type="text" value="@Model.Event.Price" class="form-control">
+                                <span asp-validation-for="Input.Price" class="text-danger"></span>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+                <input id="confirmEdit" class="btn btn-primary mt-2" type="submit" value="Update" />
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

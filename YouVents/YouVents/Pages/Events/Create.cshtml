@@ -87,11 +87,10 @@
                             <div class="col-sm-6">
                                 <label asp-for="Input.State" class="form-label">State:</label>
                                 <select asp-for="Input.State" class="form-control">
-                                    <option>PA</option>
-                                    <option>OH</option>
-                                    <option>NY</option>
-                                    <option>MD</option>
-                                    <option>VA</option>
+                                    @foreach (var state in Model.AllStates)
+                                    {
+                                        <option>@state</option>
+                                    }
                                 </select>
                                 <span asp-validation-for="Input.State" class="text-danger"></span>
                             </div>

@@ -18,13 +18,15 @@
         <div class="col-3 text-left">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">Details</h5>
-                    <p class="card-text"><b>Event Date</b>: @Model.Event.Date</p>
-                    <p class="card-text"><b>Start Time:</b> @Model.Event.Time</p>
+                    <h4 class="card-title">Details</h4>
+                    <p class="card-text"><b>Event Date</b>: @Convert.ToDateTime(Model.Event.Date).ToString("ddd, MMM dd, yyyy")</p>
+                    <p class="card-text"><b>Start Time:</b> @Convert.ToDateTime(Model.Event.Time).ToString("h:mm tt")</p>
                     <p class="card-text">
                         <b>Location</b>: @Model.Event.Street, @Model.Event.City,
                         @Model.Event.State, @Model.Event.Zip
                     </p>
+                    <p class="card-text"><b>Event Type:</b> @Model.Event.Type</p>
+                    <p class="card-text"><b>Capacity:</b> @Model.Event.Capacity.ToString("N0")</p>
                     <p class="card-text"><b>Ticket Price:</b> @Model.Event.Price.ToString("C", Culture)</p>
                     <form asp-route-id="@Model.Event.Id" method="post">
                         <label asp-for="NumTickets">Tickets:</label>
