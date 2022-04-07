@@ -78,8 +78,8 @@
                             </div>
                             <div class="col text-left">
                                 <p class="m-0"><strong>@E.Name</strong></p>
-                                <p class="text-black-50 m-0" id="Date">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
-                                <p class="text-black-50 m-0" id="Time">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
+                                <p class="text-black-50 m-0" id="Date">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
+                                <p class="text-black-50 m-0" id="Time">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
                                 <p class="text-black-50 m-0" id="Price">Price: @E.Price.ToString("C", Culture)</p>
                                 <p class="text-black-50 m-0" id="Location">Location: @E.City, @E.State</p>
                             </div>
