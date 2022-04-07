@@ -18,49 +18,10 @@ namespace YouVents.Pages.Events
     {
         public ApplicationUser User;
         public List<string> AllTypes = EventsMethods.GetAllTypes();
+        public List<string> AllStates = EventsMethods.GetAllStates();
 
         [BindProperty]
-        public InputModel Input { get; set; }
-
-        // Class to hold all of the inputs in the form
-        public class InputModel
-        {
-            [Required]
-            public string Name { get; set; }
-
-            [Required]
-            public string Description { get; set; }
-
-            [Required]
-            [DataType(DataType.Date)]
-            public DateTime Date { get; set; }
-            
-            [Required]
-            [DataType(DataType.Time)]
-            public DateTime Time { get; set; }
-
-            public int Capacity { get; set; }
-            
-            [Required]
-            public string Street { get; set; }
-            
-            [Required]
-            public string City { get; set; }
-            
-            [Required]
-            public string State { get; set; }
-           
-            [Required]
-            public string Zip { get; set; }
-            
-            [Required]
-            public float Price { get; set; }
-
-            [Required]
-            public int Rating { get; set; }
-
-            public string Type { get; set; }
-        }
+        public EventInput Input { get; set; }
 
         // On a Get action, simply load the page if the user is an organizer
         public IActionResult OnGet()
@@ -77,7 +38,7 @@ namespace YouVents.Pages.Events
             // If the user is not an organizer, then redirect them to the browse page
             else
             {
-                return RedirectToPage("/Events/Index");
+                return RedirectToPage("/Events/Browse");
             }
         }
 
@@ -93,8 +54,8 @@ namespace YouVents.Pages.Events
                 Name = Input.Name,
                 Rating = Input.Rating,
                 Description = Input.Description,
-                Date = Input.Date.ToString("ddd, dd MMM yyyy"),
-                Time = Input.Time.ToString("hh:mm tt"),
+                Date = Input.Date.ToString("MM/dd/yyyy"),
+                Time = Input.Time.ToString("HH:mm"),
                 Capacity = Input.Capacity,
                 Street = Input.Street,
                 City = Input.City,
