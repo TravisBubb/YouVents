@@ -339,5 +339,55 @@ namespace YouVents.API
             // Return the list of events that were returned -- all events in the db
             return Events;
         }
+
+        // Return all future events given a specific info
+        public static List<Event> EventsQuery(string city, float price, string date) {
+            // Declare a list of Event objects - to be returned
+            List<Event> Events = new List<Event>();
+            SqliteCommand cmd;
+            using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
+            if (date == "01/01/0001") { //default if date filter is empty
+                cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city)", connection);
+                cmd.Parameters.Add(new SqliteParameter("@city", city));
+                cmd.Parameters.Add(new SqliteParameter("@price", price));
+            }
+            else {
+                cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city) AND date = @date", connection);
+                cmd.Parameters.Add(new SqliteParameter("@city", city));
+                cmd.Parameters.Add(new SqliteParameter("@price", price));
+                cmd.Parameters.Add(new SqliteParameter("@date", date));
+            }
+            connection.Open();
+            using (SqliteDataReader reader = cmd.ExecuteReader()) {
+                // Check if there are any rows to read, given the above query
+                if (reader.HasRows) {
+                    // Loop through each row in the query result
+                    while (reader.Read()) {
+                        // Create an event object and add it to the list
+                        Event MyEvent = new Event {
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            OrganizerId = reader.GetString(reader.GetOrdinal("OrganizerId")),
+                            Name = reader.GetString(reader.GetOrdinal("Name")),
+                            Rating = reader.GetInt32(reader.GetOrdinal("Rating")),
+                            Description = reader.GetString(reader.GetOrdinal("Description")),
+                            Date = reader.GetString(reader.GetOrdinal("Date")),
+                            Time = reader.GetString(reader.GetOrdinal("Time")),
+                            Capacity = reader.GetInt32(reader.GetOrdinal("Capacity")),
+                            Street = reader.GetString(reader.GetOrdinal("Street")),
+                            City = reader.GetString(reader.GetOrdinal("City")),
+                            State = reader.GetString(reader.GetOrdinal("State")),
+                            Zip = reader.GetString(reader.GetOrdinal("Zip")),
+                            Price = reader.GetFloat(reader.GetOrdinal("Price"))
+                        };
+                        Events.Add(MyEvent);
+                    }
+                }
+            }
+            // Sort the list of events by date and time in ascending order
+            SortByDate(Events);
+
+            // Return the list of events that were returned -- all events in the db
+            return Events;
+        }
     }
 }
