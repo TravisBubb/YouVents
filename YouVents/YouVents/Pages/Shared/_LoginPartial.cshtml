@@ -5,7 +5,8 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<ul class="navbar-nav">
+
+<ul class="navbar-nav align-content-end">
     @if (SignInManager.IsSignedIn(User))
     {
         /* If the user is an organizer, then include an extra link to the manage events page */
@@ -14,7 +15,7 @@
         if (user.AccountType == "Organizer")
         {
             <li class="nav-item">
-                <a id="myEvents" class="nav-link text-dark" asp-page="/Events/Manage">My Listings</a>
+                <a id="myEvents" class="nav-link text-dark" asp-page="/Events/Manage">My Events</a>
             </li>
         }
 
