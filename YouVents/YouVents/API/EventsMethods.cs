@@ -346,10 +346,15 @@ namespace YouVents.API
             List<Event> Events = new List<Event>();
             SqliteCommand cmd;
             using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
+            // Get the current date and time
+            DateTime now = DateTime.Now;
+
             if (date == "01/01/0001") { //default if date filter is empty
-                cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city)", connection);
+                cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city) AND date >= @date", connection);
                 cmd.Parameters.Add(new SqliteParameter("@city", city));
                 cmd.Parameters.Add(new SqliteParameter("@price", price));
+                cmd.Parameters.Add(new SqliteParameter("@date", now.Date.ToString("MM/dd/yyyy")));
+
             }
             else {
                 cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city) AND date = @date", connection);
