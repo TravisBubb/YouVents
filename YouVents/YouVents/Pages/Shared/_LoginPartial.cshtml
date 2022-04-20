@@ -6,7 +6,7 @@
 @inject UserManager<ApplicationUser> UserManager
 
 
-<ul class="navbar-nav align-content-end">
+<ul class="navbar-nav ml-auto">
     @if (SignInManager.IsSignedIn(User))
     {
         /* If the user is an organizer, then include an extra link to the manage events page */
