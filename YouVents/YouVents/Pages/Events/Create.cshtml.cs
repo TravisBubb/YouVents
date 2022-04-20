@@ -54,7 +54,7 @@ namespace YouVents.Pages.Events
                 Name = Input.Name,
                 Rating = Input.Rating,
                 Description = Input.Description,
-                Date = Input.Date.ToString("MM/dd/yyyy"),
+                Date = Input.Date.ToString("yyyy/MM/dd"),
                 Time = Input.Time.ToString("HH:mm"),
                 Capacity = Input.Capacity,
                 Street = Input.Street,

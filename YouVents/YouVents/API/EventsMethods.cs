@@ -44,6 +44,11 @@ namespace YouVents.API
 
         }
 
+        internal static List<Event> EventsQuery(string city, float price, string date)
+        {
+            throw new NotImplementedException();
+        }
+
 
         // Return a list of all of the Event objects in the database
         public static List<Event> GetAll()
@@ -341,7 +346,8 @@ namespace YouVents.API
         }
 
         // Return all future events given a specific info
-        public static List<Event> EventsQuery(string city, float price, string date) {
+        public static List<Event> EventsQuery(string city, float price, string date, string sortMethod)
+        {
             // Declare a list of Event objects - to be returned
             List<Event> Events = new List<Event>();
             SqliteCommand cmd;
@@ -349,27 +355,41 @@ namespace YouVents.API
             // Get the current date and time
             DateTime now = DateTime.Now;
 
-            if (date == "01/01/0001") { //default if date filter is empty
-                cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city) AND date >= @date", connection);
-                cmd.Parameters.Add(new SqliteParameter("@city", city));
-                cmd.Parameters.Add(new SqliteParameter("@price", price));
-                cmd.Parameters.Add(new SqliteParameter("@date", now.Date.ToString("MM/dd/yyyy")));
+            //if (date == "01/01/0001")
+            //{ //default if date filter is empty
+            //    cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city) AND date >= @date", connection);
+            //    cmd.Parameters.Add(new SqliteParameter("@city", city));
+            //    cmd.Parameters.Add(new SqliteParameter("@price", price));
+            //    cmd.Parameters.Add(new SqliteParameter("@date", now.Date.ToString("MM/dd/yyyy")));
 
-            }
-            else {
-                cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city) AND date = @date", connection);
-                cmd.Parameters.Add(new SqliteParameter("@city", city));
-                cmd.Parameters.Add(new SqliteParameter("@price", price));
-                cmd.Parameters.Add(new SqliteParameter("@date", date));
-            }
+            //}
+            //else
+            //{
+            //    cmd = new SqliteCommand($"SELECT * FROM Events WHERE price <= @price AND UPPER(city) LIKE UPPER(@city) AND date = @date", connection);
+            //    cmd.Parameters.Add(new SqliteParameter("@city", city));
+            //    cmd.Parameters.Add(new SqliteParameter("@price", price));
+            //    cmd.Parameters.Add(new SqliteParameter("@date", date));
+            //}
+
+            cmd = new SqliteCommand($"SELECT a.*, b.Date || ' ' || b.Time AS DateTime FROM Events a, Events b " +
+                $"WHERE a.Id == b.Id AND a.price <= @price AND UPPER(a.city) LIKE UPPER(@city) AND a.date >= @date " +
+                $"ORDER BY " + sortMethod, connection);
+            cmd.Parameters.Add(new SqliteParameter("@city", city));
+            cmd.Parameters.Add(new SqliteParameter("@price", price));
+            cmd.Parameters.Add(new SqliteParameter("@date", date));
+
             connection.Open();
-            using (SqliteDataReader reader = cmd.ExecuteReader()) {
+            using (SqliteDataReader reader = cmd.ExecuteReader())
+            {
                 // Check if there are any rows to read, given the above query
-                if (reader.HasRows) {
+                if (reader.HasRows)
+                {
                     // Loop through each row in the query result
-                    while (reader.Read()) {
+                    while (reader.Read())
+                    {
                         // Create an event object and add it to the list
-                        Event MyEvent = new Event {
+                        Event MyEvent = new Event
+                        {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             OrganizerId = reader.GetString(reader.GetOrdinal("OrganizerId")),
                             Name = reader.GetString(reader.GetOrdinal("Name")),
@@ -388,8 +408,6 @@ namespace YouVents.API
                     }
                 }
             }
-            // Sort the list of events by date and time in ascending order
-            SortByDate(Events);
 
             // Return the list of events that were returned -- all events in the db
             return Events;

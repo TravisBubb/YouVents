@@ -26,6 +26,13 @@
                                 <div class="col-md-auto">
                                     <input asp-for="Input.Date" id="DateSearch" type="date" placeholder="date" class="form-control" />
                                 </div>
+                                <!-- -->
+                                <!--<div class="input-group input-daterange col-3">
+                                    <input type="date" class="form-control" value="2012-04-05">
+                                    <div class="input-group-addon">to</div>
+                                    <input type="date" class="form-control" value="2012-04-19">
+                                </div>-->
+                                <!-- -->
                                 <div class="col-2">
                                     <div class="input-group w-100">
                                         <div class="input-group-prepend">
@@ -40,11 +47,12 @@
                                 </div>
                                 @*<div class="col-2">*@
                                 <div class="col-md-auto">
-                                    <select id="SortBy" class="input-sm form-control">
+                                    <select asp-for="Input.SortMethod" id="SortBy" class="input-sm form-control">
                                         <option>Sort By</option>
                                         <option>Price (Low-High)</option>
                                         <option>Price (High-Low)</option>
-                                        <option>Date</option>
+                                        <option>Date (Ascend)</option>
+                                        <option>Date (Descend)</option>
                                     </select>
                                 </div>
                                 <div class="col">

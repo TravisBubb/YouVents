@@ -30,7 +30,9 @@ namespace YouVents.Pages.Events
             }
             return Page();
         }
-        public class InputModel {
+
+        public class InputModel
+        {
 
             public string Name { get; set; }
 
@@ -40,7 +42,11 @@ namespace YouVents.Pages.Events
             public string City { get; set; }
 
             public float Price { get; set; }
+
+            public string SortMethod { get; set; }
         }
+
+
         //Testing EventsQuery-->
         public IActionResult OnPost() {
 
@@ -50,13 +56,23 @@ namespace YouVents.Pages.Events
 
             float price = Input.Price != 0 ? Input.Price : float.MaxValue;
 
-            string date = Input.Date.ToString("MM/dd/yyyy");
-    
+            string date = Input.Date.ToString("yyyy/MM/dd");
+            date = "0001/01/01" != date ? date : DateTime.Now.Date.ToString("yyyy/MM/dd");
 
-            Events = EventsMethods.EventsQuery(city, price, date);
+            string sortMethod = Input.SortMethod;
+            if (sortMethod == "Price (Low-High)")
+                sortMethod = "Price";
+            else if (sortMethod == "Price (High-Low)")
+                sortMethod = "Price DESC";
+            else if (sortMethod == "Date (Ascend)")
+                sortMethod = "DateTime";
+            else if (sortMethod == "Date (Descend)")
+                sortMethod = "DateTime DESC";
+            else sortMethod = "DateTime";
+
+            Events = EventsMethods.EventsQuery(city, price, date, sortMethod);
             return Page();
         
         }
-        //end of EventsQuery Testing-->
     }
 }
