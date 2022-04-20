@@ -14,16 +14,13 @@ namespace YouVents.Pages.Events
 {
     public class ManageModel : PageModel
     {
-        //public new ApplicationUser User { get; set; }
         public List<Event> Events { get; set; }
-
 
         public IActionResult OnGet()
         {
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            //string userId = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
             Events = EventsMethods.GetAllByOrgId(userId);
 
             return Page();

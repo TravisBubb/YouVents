@@ -16,7 +16,7 @@ namespace YouVents.Pages.Events
 {
     public class CreateModel : PageModel
     {
-        public ApplicationUser User;
+        public ApplicationUser _User;
         public List<string> AllTypes = EventsMethods.GetAllTypes();
         public List<string> AllStates = EventsMethods.GetAllStates();
 
@@ -27,11 +27,12 @@ namespace YouVents.Pages.Events
         public IActionResult OnGet()
         {
             // Verify that the user is an organizer
-            string userId = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
-            User = UsersMethods.GetById(userId);
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _User = UsersMethods.GetById(userId);
 
             // If the user is an organizer, then proceed to the creation form
-            if (User.AccountType == "Organizer")
+            if (_User.AccountType == "Organizer")
             {
                 return Page();
             }
@@ -46,7 +47,7 @@ namespace YouVents.Pages.Events
         public IActionResult OnPost()
         {
             // Get the user's Id string
-            string userId = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             // Create a new Event to insert based on the inputs in the form
             Event e = new Event

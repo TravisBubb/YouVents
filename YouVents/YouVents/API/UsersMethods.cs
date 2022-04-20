@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
+using System.Text.RegularExpressions;
 using YouVents.Areas.Identity.Data;
 
 // Use a namespace for the API directory
@@ -15,7 +16,7 @@ namespace YouVents.API
             ApplicationUser user = null;
 
             using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
-            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM AspNetUsers WHERE UserName='{id}'", connection);
+            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM AspNetUsers WHERE Id='{id}'", connection);
             connection.Open();
 
             using SqliteDataReader reader = cmd.ExecuteReader();
@@ -23,17 +24,28 @@ namespace YouVents.API
             {
                 while (reader.Read())
                 {
+                    string phone = "";
+                    if (reader[reader.GetOrdinal("PhoneNumber")].GetType() != typeof(DBNull))
+                        phone = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+
                     user = new ApplicationUser
                     {
                         Id = reader.GetString(reader.GetOrdinal("Id")),
                         FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                         LastName = reader.GetString(reader.GetOrdinal("LastName")),
                         DOB = Convert.ToDateTime(reader.GetString(reader.GetOrdinal("DOB"))),
-                        AccountType = reader.GetString(reader.GetOrdinal("AccountType"))
+                        AccountType = reader.GetString(reader.GetOrdinal("AccountType")),
+                        PhoneNumber = Regex.Replace(phone, @"(\d{3})(\d{3})(\d{4})", "+1 ($1) $2-$3"),
+                        Email = reader.GetString(reader.GetOrdinal("Email"))
                     };
                 }
             }
             return user;
+        }
+
+        private static Type Type(DBNull dBNull)
+        {
+            throw new NotImplementedException();
         }
     }
 }

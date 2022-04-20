@@ -14,7 +14,7 @@ namespace YouVents.Pages.Events
     {
         public List<Event> Events { get; set; }
         public int NumTickets { get; set; }
-        public new ApplicationUser User { get; set; }
+        public ApplicationUser _User { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -25,8 +25,8 @@ namespace YouVents.Pages.Events
 
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                string userId = HttpContext.User.FindFirst(ClaimTypes.Name).Value;
-                User = UsersMethods.GetById(userId);
+                string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                _User = UsersMethods.GetById(userId);
             }
             return Page();
         }

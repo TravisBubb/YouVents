@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.SqlClient;
-using Microsoft.Data.Sqlite;
 using YouVents.API;
+using YouVents.Areas.Identity.Data;
 using YouVents.Models;
 
 namespace YouVents.Pages.Events
@@ -15,6 +9,8 @@ namespace YouVents.Pages.Events
     public class ViewModel : PageModel
     {
         public Event Event { get; set; }
+        public ApplicationUser Organizer = null;
+
         [BindProperty]
         public int NumTickets { get; set; }
 
@@ -26,6 +22,9 @@ namespace YouVents.Pages.Events
             {
                 return NotFound();
             }
+
+            Organizer = UsersMethods.GetById(Event.OrganizerId);
+
             return Page();
         }
 
