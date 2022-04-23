@@ -1,0 +1,50 @@
+﻿@page "{ReceiverID}"
+@model YouVents.Pages.MessagesModel
+@{
+    ViewData["Title"] = "Messages";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <ul id="messagesList">
+            @foreach (var msg in Model.Messages) {
+            <p class="text-primary m-0" id="Sendername">@msg.Sendername: 
+                <span class="text-muted small" id="Timestamp">@Convert.ToDateTime(msg.Timestamp).ToLocalTime().ToString("M/d/yyyy, hh:mm:ss tt")</span></p>
+                @*<p>@TimeZoneInfo.ConvertTimeFromUtc(@Convert.ToDateTime(msg.Timestamp), TimeZoneInfo.Local)</p>*@
+            <p class="text-black mb-3" id="Content">@msg.Content</p>
+        }
+
+        </ul>
+        
+    </div>
+</div>
+
+<p hidden id = SenderHiddenID>@Model.Sender.Id</p>
+<p hidden id = SenderHiddenName>@Model.Sender.FirstName @Model.Sender.LastName</p>
+<p hidden id = ReceiverHiddenID>@Model.Receiver.Id</p>
+
+<div class="container">
+    <div class="row">&nbsp;</div>
+@*    <div class="row">
+        <div class="col-2">User</div>
+        <div class="col-4"><input type="text" id="userInput" /></div>
+    </div>*@
+    <div class="row">
+        <div class="col-2">Message</div>
+        <div class="col-4"><input type="text" id="messageInput" /></div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-6">
+            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+    </div>
+</div>
+<script src="~/js/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
