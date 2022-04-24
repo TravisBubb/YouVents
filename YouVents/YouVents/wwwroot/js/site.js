@@ -81,7 +81,11 @@ ImageToUpload.addEventListener('change', function (event) {
         };
 
         const response = await $.ajax(settings)
-        console.log(response);
+        //console.log(response);
+        //document.getElementById('EventImageUploadedResponse').value = response;
+
+        var json = JSON.parse(response);
+        document.getElementById('EventImageUploadedResponse.url').value = json.secure_url;
     }
 
     postImage()

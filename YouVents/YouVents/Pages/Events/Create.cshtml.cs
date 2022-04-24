@@ -73,11 +73,9 @@ namespace YouVents.Pages.Events {
                 Price = Input.Price,
                 Type = Input.Type,
                 Image = Input.Image
-                //Image = uploadResult.Url.ToString()
             };
 
-            //Console.WriteLine(uploadResult);
-            Console.WriteLine(e.Image);
+            //Console.WriteLine(e.Image);
 
             // Try to insert the event into the database
             EventsMethods.Create(e);

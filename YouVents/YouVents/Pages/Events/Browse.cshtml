@@ -72,12 +72,12 @@
 
                     <a asp-page="/Events/View" asp-route-id="@E.Id">
 
-                        <div class="row">
+                        <div class="row mb-5">
 
                             <!-- if (document.getElementByID("CitySearch").value == @E.City){        Not sure how to get this to work yet-->
 
                             <div class="col text-right">
-                                <img style="height:100px" class="mx-auto d-block" src="@E.Image" />
+                                <img style="height:150px" class="mx-auto d-block" src="@E.Image" />
                             </div>
                             <div class="col text-left">
                                 <p class="m-0"><strong>@E.Name</strong></p>

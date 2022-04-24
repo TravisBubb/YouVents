@@ -12,7 +12,8 @@
             <h1>@Model.Event.Name</h1>
             @*<img height="150" width="300" src="~/images/event.png" />*@
             <br />
-            <h4>Description</h4>
+            <img src="@Model.Event.Image" style="max-width: 40em" class="my-3"/>
+            <h4>Description:</h4>
             <p>@Model.Event.Description</p>
         </div>
         <div class="col-3 text-left">
