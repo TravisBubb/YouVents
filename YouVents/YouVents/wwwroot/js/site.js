@@ -1,4 +1,4 @@
-﻿ //Filter the list of Events based on input in the search bar
+﻿//Filter the list of Events based on input in the search bar
 $(document).ready(function () {
 
     // Try to perform a filter after a key-up event in the search bar
@@ -22,27 +22,68 @@ $(document).ready(function () {
         });
     });
 
-    $("#SortBy").change(function () {
 
-        if ($(this).val() == "Price") {
-            SortByPrice();
-        }
-        if ($(this).val() == "Date") {
-            SortByDate();
-        }
-    });
 });
 
+// For handling uploaded pictures
+var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dpmhx7k6y/image/upload";
+var CLOUDINARY_UPLOAD_PRESET = "qhiukypt";
+var My_PublicID = "759656868747797";
+
+var ImageToUpload = document.getElementById('EventImageUpload');
+
+//ImageToUpload.addEventListener('change', function (event) {
+//        var file = event.target.files[0];
+//        var formData = new FormData();
+//        formData.append("file", file);
+//        formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+//        //formData.append("public_id", My_PublicID);
 
 
-function SortByPrice() {
-    var EventsList = $("#EventList");
-    var Events = EventsList.children('a');
+//        var settings = {
+//            "url": CLOUDINARY_URL,
+//            "method": "POST",
+//            "timeout": 0,
 
-    var lines = $(Events).text().trim().split("\n");
+//            "processData": false,
+//            "mimeType": "multipart/form-data",
+//            "contentType": false,
+//            "data": formData
+//        };
 
-    lines.forEach(x => { console.log(x) });
+//    $.ajax(settings).then(function (response) {
+
+//        console.log(response.data);
+//            console.log(response.url);
+//        });
+//});
+
+ImageToUpload.addEventListener('change', function (event) {
+    
+    const postImage = async () => {
+
+        var file = event.target.files[0];
+        var formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+        //formData.append("public_id", My_PublicID);
 
 
-    //console.log(lines);
-}
+        var settings = {
+            "url": CLOUDINARY_URL,
+            "method": "POST",
+            "timeout": 0,
+
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": formData
+        };
+
+        const response = await $.ajax(settings)
+        console.log(response);
+    }
+
+    postImage()
+    
+});

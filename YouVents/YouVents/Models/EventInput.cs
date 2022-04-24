@@ -40,5 +40,6 @@ namespace YouVents.Models
         public int Rating { get; set; }
 
         public string Type { get; set; }
+        public string Image { get; set; }
     }
 }

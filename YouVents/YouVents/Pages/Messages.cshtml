@@ -1,4 +1,4 @@
-﻿@page "{ReceiverID}"
+﻿@page "{ReceiverUsername}"
 @model YouVents.Pages.MessagesModel
 @{
     ViewData["Title"] = "Messages";
@@ -17,7 +17,7 @@
             <p class="text-primary m-0" id="Sendername">@msg.Sendername: 
                 <span class="text-muted small" id="Timestamp">@Convert.ToDateTime(msg.Timestamp).ToLocalTime().ToString("M/d/yyyy, hh:mm:ss tt")</span></p>
                 @*<p>@TimeZoneInfo.ConvertTimeFromUtc(@Convert.ToDateTime(msg.Timestamp), TimeZoneInfo.Local)</p>*@
-            <p class="text-black mb-3" id="Content">@msg.Content</p>
+            <p class="text-black mb-3 h4" id="Content">@msg.Content</p>
         }
 
         </ul>

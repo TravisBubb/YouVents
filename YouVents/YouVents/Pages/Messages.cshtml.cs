@@ -14,16 +14,17 @@ namespace YouVents.Pages
         public ApplicationUser Receiver { get; set; }
         public List<Message> Messages { get; set; }
         public ApplicationUser Sender { get; set; }
-        public IActionResult OnGet(string ReceiverID)
+        public IActionResult OnGet(string ReceiverUsername)
         {
 
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 Sender = UsersMethods.GetById(userId);
-                Receiver = UsersMethods.GetById(ReceiverID);
+                //Receiver = UsersMethods.GetById(ReceiverID);
+                Receiver = UsersMethods.GetByUsername(ReceiverUsername);
 
-                Messages = MessageMethods.GetPastMessages(userId, ReceiverID);
+                Messages = MessageMethods.GetPastMessages(userId, Receiver.Id);
 
                 return Page();
             }

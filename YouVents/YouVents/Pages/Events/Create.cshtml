@@ -12,27 +12,27 @@
             <div class="row g-5">
                 <div class="col-md-6 col-lg-7">
                     <div class="row g-3">
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 mb-3">
                             <label asp-for="Input.Name" class="form-label">Event Name:</label>
                             <input asp-for="Input.Name" type="text" class="form-control" />
                             <span asp-validation-for="Input.Name" class="text-danger"></span>
 
                         </div>
 
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 mb-3">
                             <label asp-for="Input.Description" class="form-label">Description:</label>
                             <textarea asp-for="Input.Description" class="form-control" rows="5"></textarea>
                             <span asp-validation-for="Input.Description" class="text-danger"></span>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 mb-3">
                             <label asp-for="Input.Capacity" class="form-label">Max Capacity (leave 0 for none):</label>
                             <input asp-for="Input.Capacity" class="form-control w-25" type="number" value="0" />
                             <span asp-validation-for="Input.Capacity" class="text-danger"></span>
                         </div>
 
                         <!-- Dropdown to select one of the several given event types -->
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 mb-3">
                             <label asp-for="Input.Type" class="form-label">Event Type:</label>
                             <select asp-for="Input.Type" class="form-control">
                                 @foreach (var type in Model.AllTypes)
@@ -45,7 +45,7 @@
                         </div>
 
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-6 mb-3">
                             <label asp-for="Input.Price" class="form-label">Ticket Price:</label>
                             <div class="input-group w-50">
                                 <div class="input-group-prepend">
@@ -54,6 +54,15 @@
                                 <input asp-for="Input.Price" type="text" placeholder="0.00" class="form-control">
                             </div>
                             <span asp-validation-for="Input.Price" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="col-sm-6 mb-3">
+                            @*<label class="btn btn-default">
+                                Browse <input type="file" hidden>
+                            </label>*@
+                            <label asp-for="Input.Image" class="form-label">&nbsp&nbsp Add Image:</label>
+                            <input type="file" class="form-control-sm" id="EventImageUpload" />
+                            <input asp-for="Input.Image" type="text" class="form-control-sm" id="EventImageUploaded" />
                         </div>
                     </div>
                 </div>

@@ -135,7 +135,8 @@ namespace YouVents.API
                                 State = reader.GetString(reader.GetOrdinal("State")),
                                 Zip = reader.GetString(reader.GetOrdinal("Zip")),
                                 Price = reader.GetFloat(reader.GetOrdinal("Price")),
-                                Type = reader.GetString(reader.GetOrdinal("Type"))
+                                Type = reader.GetString(reader.GetOrdinal("Type")),
+                                Image = reader.GetString(reader.GetOrdinal("Image"))
                             };
                             Events.Add(MyEvent);
                         }
@@ -178,7 +179,8 @@ namespace YouVents.API
                             State = reader.GetString(reader.GetOrdinal("State")),
                             Zip = reader.GetString(reader.GetOrdinal("Zip")),
                             Price = reader.GetFloat(reader.GetOrdinal("Price")),
-                            Type = reader.GetString(reader.GetOrdinal("Type"))
+                            Type = reader.GetString(reader.GetOrdinal("Type")),
+                            Image = reader.GetString(reader.GetOrdinal("Image"))
                         };
                     }
                 }
@@ -227,8 +229,8 @@ namespace YouVents.API
             SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
             connection.Open();
             SqliteCommand insertion = new SqliteCommand("" +
-                "INSERT INTO Events (Name, Rating, Description, Date, Time, Capacity, Street, City, State, OrganizerId, Zip, Price, Type) " +
-                "VALUES (@name,@rating,@description,@date,@time,@capacity,@street,@city,@state,@organizerId,@zip,@price,@type)",
+                "INSERT INTO Events (Name, Rating, Description, Date, Time, Capacity, Street, City, State, OrganizerId, Zip, Price, Type, Image) " +
+                "VALUES (@name,@rating,@description,@date,@time,@capacity,@street,@city,@state,@organizerId,@zip,@price,@type, @image)",
                 connection);
             insertion.Parameters.Add(new SqliteParameter("@name", e.Name));
             insertion.Parameters.Add(new SqliteParameter("@rating", e.Rating));
@@ -243,6 +245,7 @@ namespace YouVents.API
             insertion.Parameters.Add(new SqliteParameter("@zip", e.Zip));
             insertion.Parameters.Add(new SqliteParameter("@price", e.Price));
             insertion.Parameters.Add(new SqliteParameter("@type", e.Type));
+            insertion.Parameters.Add(new SqliteParameter("@image", e.Image));
             try
             {
                 insertion.ExecuteNonQuery();
@@ -332,7 +335,8 @@ namespace YouVents.API
                             State = reader.GetString(reader.GetOrdinal("State")),
                             Zip = reader.GetString(reader.GetOrdinal("Zip")),
                             Price = reader.GetFloat(reader.GetOrdinal("Price")),
-                            Type = reader.GetString(reader.GetOrdinal("Type"))
+                            Type = reader.GetString(reader.GetOrdinal("Type")),
+                            Image = reader.GetString(reader.GetOrdinal("Image"))
                         };
                         Events.Add(MyEvent);
                     }
@@ -402,7 +406,8 @@ namespace YouVents.API
                             City = reader.GetString(reader.GetOrdinal("City")),
                             State = reader.GetString(reader.GetOrdinal("State")),
                             Zip = reader.GetString(reader.GetOrdinal("Zip")),
-                            Price = reader.GetFloat(reader.GetOrdinal("Price"))
+                            Price = reader.GetFloat(reader.GetOrdinal("Price")),
+                            Image = reader.GetString(reader.GetOrdinal("Image"))
                         };
                         Events.Add(MyEvent);
                     }

@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-1"></div>
             </div>
-            <div id="EventList" class="mt-4">
+            <div id="EventList" class="mt-4 ">
                 <!-- Loop through all of the events and display them -->
                 @foreach (var E in Model.Events)
                 {
@@ -77,7 +77,7 @@
                             <!-- if (document.getElementByID("CitySearch").value == @E.City){        Not sure how to get this to work yet-->
 
                             <div class="col text-right">
-                                <img src="~/images/event.png" />
+                                <img style="height:100px" class="mx-auto d-block" src="@E.Image" />
                             </div>
                             <div class="col text-left">
                                 <p class="m-0"><strong>@E.Name</strong></p>

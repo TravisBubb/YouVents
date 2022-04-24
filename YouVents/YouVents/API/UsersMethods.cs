@@ -36,7 +36,38 @@ namespace YouVents.API
                         DOB = Convert.ToDateTime(reader.GetString(reader.GetOrdinal("DOB"))),
                         AccountType = reader.GetString(reader.GetOrdinal("AccountType")),
                         PhoneNumber = Regex.Replace(phone, @"(\d{3})(\d{3})(\d{4})", "+1 ($1) $2-$3"),
-                        Email = reader.GetString(reader.GetOrdinal("Email"))
+                        Email = reader.GetString(reader.GetOrdinal("Email")),
+                        UserName = reader.GetString(reader.GetOrdinal("UserName"))
+                    };
+                }
+            }
+            return user;
+        }
+
+        public static ApplicationUser GetByUsername(string username) {
+            // User variable that will be populated and returned
+            ApplicationUser user = null;
+
+            using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
+            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM AspNetUsers WHERE UserName='{username}'", connection);
+            connection.Open();
+
+            using SqliteDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows) {
+                while (reader.Read()) {
+                    string phone = "";
+                    if (reader[reader.GetOrdinal("PhoneNumber")].GetType() != typeof(DBNull))
+                        phone = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+
+                    user = new ApplicationUser {
+                        Id = reader.GetString(reader.GetOrdinal("Id")),
+                        FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                        LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                        DOB = Convert.ToDateTime(reader.GetString(reader.GetOrdinal("DOB"))),
+                        AccountType = reader.GetString(reader.GetOrdinal("AccountType")),
+                        PhoneNumber = Regex.Replace(phone, @"(\d{3})(\d{3})(\d{4})", "+1 ($1) $2-$3"),
+                        Email = reader.GetString(reader.GetOrdinal("Email")),
+                        UserName = reader.GetString(reader.GetOrdinal("UserName"))
                     };
                 }
             }

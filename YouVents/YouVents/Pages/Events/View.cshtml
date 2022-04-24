@@ -66,7 +66,8 @@
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Send a Private Message</button>
+                            @*<a asp-page="/Messages" asp-route-id="@Model.Organizer.UserName" class="btn btn-primary">Send a Private Message</a>*@
+                            <a href="/Messages/@Model.Organizer.UserName" class="btn btn-primary">Send a Private Message</a>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         </div>
                     </div>
