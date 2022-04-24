@@ -69,18 +69,18 @@
                 <!-- Loop through all of the events and display them -->
                 @foreach (var E in Model.Events)
                 {
-
-                    <a asp-page="/Events/View" asp-route-id="@E.Id">
+                    <div class="container row">
+                    <a style="margin-left: 30%" asp-page="/Events/View" asp-route-id="@E.Id">
 
                         <div class="row mb-5">
 
                             <!-- if (document.getElementByID("CitySearch").value == @E.City){        Not sure how to get this to work yet-->
 
-                            <div class="col text-right">
-                                <img style="height:150px" class="mx-auto d-block" src="@E.Image" />
+                            <div class="text-right">
+                                <img style="height:150px; width:200px" class="mx-4 d-block" src="@E.Image" />
                             </div>
-                            <div class="col text-left">
-                                <p class="m-0"><strong>@E.Name</strong></p>
+                            <div class="text-left my-auto">
+                                <p class="m-0" style="font-size:1.5em;"><strong>@E.Name</strong></p>
                                 <p class="text-black-50 m-0" id="Date">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
                                 <p class="text-black-50 m-0" id="Time">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
                                 <p class="text-black-50 m-0" id="Price">Price: @E.Price.ToString("C", Culture)</p>
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </a>
-
+                    </div>
                 }
             </div>
         </div>
