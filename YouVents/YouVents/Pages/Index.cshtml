@@ -5,13 +5,35 @@
     ViewData["Title"] = "Home";
 }
 
-    <div class="px-4 py-5 my-5 text-center">
-        <h1 class="display-5 fw-bold">Welcome to YouVents!</h1>
-        <div class="col-lg-6 mx-auto">
-            <p class="lead mb-4">Easily browse local events to attend or even host your own! With YouVents the possibilities end with you.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a asp-page="/Events/Index"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Get started</button></a>
-                <a asp-page="/About"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Learn more</button></a>
-            </div>
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Welcome to YouVents!</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Easily browse local events to attend or even host your own! With YouVents the possibilities end with you.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <a asp-page="/Events/Browse"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">Get started</button></a>
+            <a asp-page="/About"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Learn more</button></a>
         </div>
     </div>
+</div>
+<div><p class="mt-5 text-center" style="bottom: 0;" id="Quote">Quote</p></div>
+
+<script>
+        document.addEventListener('DOMContentLoaded',() => {
+            const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://quotes15.p.rapidapi.com/quotes/random/?language_code=en",
+            "method": "GET",
+            "headers": {
+                "X-RapidAPI-Host": "quotes15.p.rapidapi.com",
+                "X-RapidAPI-Key": "1c70862a02msh004931f41b217bep1bdb5ejsnfc6afa455d00"
+            }
+        };
+
+        $.ajax(settings).done(function (response) {
+            document.getElementById("Quote").innerHTML = 'Quote: "'+ response.content+'"';
+        });
+    });
+
+
+</script>

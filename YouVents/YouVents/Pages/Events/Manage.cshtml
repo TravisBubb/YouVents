@@ -21,11 +21,11 @@
                 @foreach (var E in Model.Events)
                 {
                     <a asp-page="/Events/Edit" asp-route-id="@E.Id">
-                        <div class="row">
-                            <div class="col text-right">
-                                <img src="~/images/event.png" />
+                        <div class="row mb-5">
+                            <div class="col text-right my-auto">
+                                <img style="max-height:200px; width:200px" src="@E.Image" />
                             </div>
-                            <div class="col text-left">
+                            <div class="col text-left my-auto">
                                 <p class="m-0"><strong>@E.Name</strong></p>
                                 <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
                                 <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
