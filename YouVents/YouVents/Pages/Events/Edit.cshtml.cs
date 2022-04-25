@@ -56,8 +56,7 @@ namespace YouVents.Pages.Events
 
             EventsMethods.Update(e);
 
-            return RedirectToPage("/Events/EditSuccess");
-            //return RedirectToPage("/Events/View/"+id);
+            return RedirectToPage("/Events/View", new { id = id, edit = 1 });
         }
     }
 }

@@ -10,12 +10,14 @@ namespace YouVents.Pages.Events
     {
         public Event Event { get; set; }
         public ApplicationUser Organizer = null;
+        public int Edit;
 
         [BindProperty]
         public int NumTickets { get; set; }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, int edit)
         {
+            Edit = edit;
             Event = EventsMethods.GetById(id);
 
             if (Event == null)

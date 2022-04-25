@@ -70,7 +70,7 @@
                 @foreach (var E in Model.Events)
                 {
                     <div style="margin-left: 25%" class="container row mb-5">
-                    <a asp-page="/Events/View" asp-route-id="@E.Id">
+                    <a asp-page="/Events/View" asp-route-id="@E.Id" asp-route-edit=0>
 
                         <div class="row">
 

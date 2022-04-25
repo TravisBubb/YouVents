@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page "{id:int}/{edit:int}"
 @model YouVents.Pages.Events.ViewModel
 @{
     ViewData["Title"] = "View";
@@ -7,11 +7,18 @@
 
 
 <div class="container">
+    @if (Model.Edit == 1)
+    {
+        <div class="alert alert-success alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <strong>Success!</strong> Your event has been successfully updated!
+        </div>
+    }
     <div class="row">
         <div class="col-9 text-left">
             <h1>@Model.Event.Name</h1>
             <br />
-            <img src="@Model.Event.Image" style="max-width: 40em;  min-width: 35em;" class="my-3"/>
+            <img src="@Model.Event.Image" style="max-width: 40em;  min-width: 35em;" class="my-3" />
             <h4>Description:</h4>
             <p>@Model.Event.Description</p>
         </div>
@@ -60,7 +67,7 @@
                             <p>Email:<a href="mailto: @Model.Organizer.Email"> @Model.Organizer.Email</a></p>
                             @if (Model.Organizer.PhoneNumber != "")
                             {
-                                <p>Phone: @Model.Organizer.PhoneNumber</p> 
+                                <p>Phone: @Model.Organizer.PhoneNumber</p>
                             }
                         </div>
 
