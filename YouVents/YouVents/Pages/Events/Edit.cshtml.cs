@@ -39,7 +39,8 @@ namespace YouVents.Pages.Events
             Event e = new Event
             {
                 Name = Input.Name,
-                Description = Input.Description,
+                //Description = Input.Description, // not working until we figure out how to use BS asp-for
+                Description = Request.Form["description"], // Getting description by tag id for now
                 Date = Input.Date.ToString("yyyy/MM/dd"),
                 Time = Input.Time.ToString("HH:mm"),
                 Capacity = Input.Capacity,
@@ -49,12 +50,14 @@ namespace YouVents.Pages.Events
                 Zip = Input.Zip,
                 Price = Input.Price,
                 Type = Input.Type,
-                Id = id
+                Id = id,
+                Image = Input.Image
             };
 
             EventsMethods.Update(e);
 
-            return Page();
+            return RedirectToPage("/Events/EditSuccess");
+            //return RedirectToPage("/Events/View/"+id);
         }
     }
 }

@@ -196,7 +196,7 @@ namespace YouVents.API
             connection.Open();
             SqliteCommand update = new SqliteCommand("" +
                 "UPDATE Events SET Name=@name, Description=@description, Date=@date, Time=@time, Capacity=@capacity, " +
-                "Street=@street, City=@city, State=@state, Zip=@zip, Price=@price, Type=@type " +
+                "Street=@street, City=@city, State=@state, Zip=@zip, Price=@price, Type=@type, Updated_On_Timestamp=CURRENT_TIMESTAMP " +
                 "WHERE Id=@id", connection);
 
             update.Parameters.Add(new SqliteParameter("@name", e.Name));

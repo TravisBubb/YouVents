@@ -12,11 +12,12 @@
                 <label class="form-label h4">Event Name</label>
                 <input asp-for="Input.Name" type="text" class="form-control" value="@Model.Event.Name" />
                 <span asp-validation-for="Input.Name" class="text-danger"></span>
-                @*<img height="150" width="300" src="~/images/event.png" />*@
-                <br />
-                <h4>Description</h4>
-                <textarea asp-for="Input.Description" class="form-control" rows="8">@Model.Event.Description</textarea>
-                <span asp-validation-for="Input.Description" class="text-danger"></span>
+                <img src="@Model.Event.Image" style="max-width: 40em;  min-width: 35em;" class="my-3"/>
+                <div class="form-group shadow-textarea">
+                    <label class="form-label h4" for="Description">Description</label>
+                    <textarea class="form-control" name="description" rows="8" id="Description">@Model.Event.Description</textarea>
+                    <span asp-validation-for="Input.Description" class="text-danger"></span>
+                </div>
             </div>
             <div class="col-4 text-left pl-5">
                 <div class="card" style="width: 18rem;">
@@ -81,7 +82,7 @@
                         </p>
                         <p class="card-text">
                             <b>Capacity:</b>
-                            <input asp-for="Input.Capacity" class="form-control w-50" type="text" value="@Model.Event.Capacity.ToString("N0")" />
+                            <input asp-for="Input.Capacity" class="form-control w-50" type="text" value="@Model.Event.Capacity" />
                             <span asp-validation-for="Input.Capacity" class="text-danger"></span>
                         </p>
                         <p class="card-text">
