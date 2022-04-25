@@ -254,6 +254,7 @@ namespace YouVents.API
             {
                 throw new Exception(ex.Message);
             }
+            Console.WriteLine(e);
             connection.Close();
         }
 

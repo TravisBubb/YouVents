@@ -56,6 +56,8 @@ namespace YouVents.Pages.Events {
             // Get the user's Id string
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            //Image must have a value before going to EventMethods.Create
+            if (Input.Image == null) { Input.Image = "/images/EVENT01.png"; }
 
             // Create a new Event to insert based on the inputs in the form
             Event e = new Event {

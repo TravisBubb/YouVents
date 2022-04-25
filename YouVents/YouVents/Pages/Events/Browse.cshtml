@@ -69,10 +69,10 @@
                 <!-- Loop through all of the events and display them -->
                 @foreach (var E in Model.Events)
                 {
-                    <div class="container row">
-                    <a style="margin-left: 30%" asp-page="/Events/View" asp-route-id="@E.Id">
+                    <div style="margin-left: 30%" class="container row mb-5">
+                    <a asp-page="/Events/View" asp-route-id="@E.Id">
 
-                        <div class="row mb-5">
+                        <div class="row">
 
                             <!-- if (document.getElementByID("CitySearch").value == @E.City){        Not sure how to get this to work yet-->
 

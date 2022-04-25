@@ -12,7 +12,7 @@
             <h1>@Model.Event.Name</h1>
             @*<img height="150" width="300" src="~/images/event.png" />*@
             <br />
-            <img src="@Model.Event.Image" style="max-width: 40em" class="my-3"/>
+            <img src="@Model.Event.Image" style="max-width: 40em;  min-width: 35em;" class="my-3"/>
             <h4>Description:</h4>
             <p>@Model.Event.Description</p>
         </div>
@@ -31,7 +31,7 @@
                     <p class="card-text"><b>Ticket Price:</b> @Model.Event.Price.ToString("C", Culture)</p>
                     <form asp-route-id="@Model.Event.Id" method="post">
                         <label asp-for="NumTickets">Tickets:</label>
-                        <input type="number" class="form-control" asp-for="NumTickets" />
+                        <input type="number" class="form-control mb-2" asp-for="NumTickets" />
                         <input type="submit" class="btn btn-lg btn-outline-primary" value="Checkout" />
                     </form>
                 </div>
