@@ -14,16 +14,21 @@
         var user = await @UserManager.GetUserAsync(User);
         if (user.AccountType == "Organizer")
         {
-            <li class="nav-item">
+            <li class="nav-item my-auto">
                 <a id="myEvents" class="nav-link text-dark" asp-page="/Events/Manage">My Events</a>
             </li>
         }
 
-        <li class="nav-item">
+        <li class="nav-item my-auto">
             @*<a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>*@
             <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@user.UserName</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
+            <a id="messages" class="nav-link text-dark" asp-page="/Messages" asp-route-ReceiverUsername="">
+                <img style="max-height: 2em;" src="/images/message-icon.png" />
+            </a>
+        </li>
+        <li class="nav-item my-auto">
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Logout</button>
             </form>
@@ -31,10 +36,10 @@
     }
     else
     {
-        <li class="nav-item">
+        <li class="nav-item my-auto">
             <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item my-auto">
             <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
     }

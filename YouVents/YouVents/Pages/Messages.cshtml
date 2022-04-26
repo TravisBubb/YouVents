@@ -1,50 +1,63 @@
-﻿@page "{ReceiverUsername}"
+﻿@page "{ReceiverUsername?}"
 @model YouVents.Pages.MessagesModel
 @{
     ViewData["Title"] = "Messages";
 }
 
+<div id="messageContainer" class="container" style="min-height: 55vh; border-style: solid; border-color: grey; border-width: 1px; border-radius: 5px;">
+    <div class="row mt-4" style="height: 95%;">
+        <div class="col-3 border-right scrollable-content">
+            @foreach (var contact in Model.RecentContacts)
+            {
+                <div class="card" style="max-width: 18rem;">
+                    <div class="card-header">
+                        <h5>
+                            <a asp-page="/Messages" asp-route-ReceiverUsername="@contact">@contact</a>
+                        </h5>
+                    </div>
+                </div>
+            }
 
-<div class="row">
-    <div class="col-12">
-        <hr />
-    </div>
-</div>
-<div class="row">
-    <div class="col-6">
-        <ul id="messagesList">
-            @foreach (var msg in Model.Messages) {
-            <p class="text-primary m-0" id="Sendername">@msg.Sendername: 
-                <span class="text-muted small" id="Timestamp">@Convert.ToDateTime(msg.Timestamp).ToLocalTime().ToString("M/d/yyyy, hh:mm:ss tt")</span></p>
-                @*<p>@TimeZoneInfo.ConvertTimeFromUtc(@Convert.ToDateTime(msg.Timestamp), TimeZoneInfo.Local)</p>*@
-            <p class="text-black mb-3 h4" id="Content">@msg.Content</p>
-        }
-
-        </ul>
-        
-    </div>
-</div>
-
-<p hidden id = SenderHiddenID>@Model.Sender.Id</p>
-<p hidden id = SenderHiddenName>@Model.Sender.FirstName @Model.Sender.LastName</p>
-<p hidden id = ReceiverHiddenID>@Model.Receiver.Id</p>
-
-<div class="container">
-    <div class="row">&nbsp;</div>
-@*    <div class="row">
-        <div class="col-2">User</div>
-        <div class="col-4"><input type="text" id="userInput" /></div>
-    </div>*@
-    <div class="row">
-        <div class="col-2">Message</div>
-        <div class="col-4"><input type="text" id="messageInput" /></div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-        <div class="col-6">
-            <input type="button" id="sendButton" value="Send Message" />
+        </div>
+        <div class="col">
+            @if (Model.Receiver.UserName != "")
+            {
+                <div class="row relative-top">
+                    <h3 class="ml-5 mb-3">@@<u>@Model.Receiver.UserName</u></h3>
+                </div>
+                <div class="row scrollable-content mb-2">
+                    <div class="col-6">
+                        <ul id="messagesList">
+                            @foreach (var msg in Model.Messages)
+                            {
+                                <p class="text-primary m-0" id="Sendername">
+                                    @msg.Sendername:
+                                    <span class="text-muted small" id="Timestamp">@Convert.ToDateTime(msg.Timestamp).ToLocalTime().ToString("M/d/yyyy, hh:mm:ss tt")</span>
+                                </p>
+                                <p class="text-black mb-3 h4 message p-0" id="Content">@msg.Content</p>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <p hidden id=SenderHiddenID>@Model.Sender.Id</p>
+                <p hidden id=SenderHiddenName>@Model.Sender.FirstName @Model.Sender.LastName</p>
+                <p hidden id=ReceiverHiddenID>@Model.Receiver.Id</p>
+                <div class="row mb-3 relative-bottom">
+                    <div class="col my-auto">
+                        <textarea id="messageInput" rows="1" class="w-100 p-2"></textarea>
+                    </div>
+                    <div class="col-3 my-auto">
+                        <button id="sendButton" class="btn btn-outline-primary" data-mdb-ripple-color="dark" style="margin-bottom: .4em; height: 2.5em;">Send Message</button>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="~/js/Messages.js"></script>
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

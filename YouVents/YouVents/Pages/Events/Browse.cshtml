@@ -10,8 +10,6 @@
     <div class="row">
         <div class="col-12 text-center">
             <h2 class="my-3">Upcoming Events:</h2>
-
-
             <!-- testing filtering-->
             <div class="container row">
                 <div class="col-1"></div>
@@ -65,28 +63,32 @@
                 </div>
                 <div class="col-1"></div>
             </div>
-            <div id="EventList" class="mt-4 ">
+            <div id="EventList" class="mt-4 scrollable-content">
                 <!-- Loop through all of the events and display them -->
                 @foreach (var E in Model.Events)
                 {
-                    <div style="margin-left: 25%" class="container row mb-5">
-                    <a asp-page="/Events/View" asp-route-id="@E.Id" asp-route-edit=0>
+                    <div style="margin-left: 25%;" class="container row mb-5">
+                        <a asp-page="/Events/View" asp-route-id="@E.Id" asp-route-edit=0>
 
-                        <div class="row">
+                            <div class="row">
 
-                            <div class="text-right my-auto">
-                                <img style="max-height:200px; width:250px" class="mx-4 d-block" src="@E.Image" />
+                                <div class="text-right my-auto">
+                                    <img style="max-height: 25vh; width:25vh" class="mx-4 d-block" src="@E.Image" />
+                                </div>
+                                <div class="text-left my-auto">
+                                    <p class="m-0" style="font-size: 2.5vh;
+                    text-shadow: -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px -1px 0 #FFFFFF;">
+                                        <strong>@E.Name</strong>
+                                    </p>
+                                    <p class="text-black-50 m-0" id="Date" style="font-size: 2vh;">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
+                                    <p class="text-black-50 m-0" id="Time" style="font-size: 2vh;">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
+                                    <p class="text-black-50 m-0" id="Price" style="font-size: 2vh;">Price: @E.Price.ToString("C", Culture)</p>
+                                    <p class="text-black-50 m-0" id="Location" style="font-size: 2vh;">Location: @E.City, @E.State</p>
+                                </div>
                             </div>
-                            <div class="text-left my-auto">
-                                <p class="m-0" style="font-size:1.5em; text-shadow: -1px 1px 0 #0F0, 1px 1px 0 #0F0, 1px -1px 0 #0F0; -1px -1px 0 #0F0;"><strong>@E.Name</strong></p>
-                                <p class="text-black-50 m-0" id="Date">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
-                                <p class="text-black-50 m-0" id="Time">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
-                                <p class="text-black-50 m-0" id="Price">Price: @E.Price.ToString("C", Culture)</p>
-                                <p class="text-black-50 m-0" id="Location">Location: @E.City, @E.State</p>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
                     </div>
+
                 }
             </div>
         </div>

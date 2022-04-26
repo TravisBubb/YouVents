@@ -21,8 +21,18 @@ $(document).ready(function () {
 
         });
     });
+});
 
+window.addEventListener("resize", function () {
+    //var messageContainer = document.getElementById("messageContainer");
+    var scrollBoxes = document.getElementsByClassName("scrollable-content");
+    for (var i = 0; i < scrollBoxes.length; i++) {
+        scrollBoxes[i].style.height = (window.innerHeight * .60) + "px";
+    }
 
 });
 
-// For handling uploaded pictures
+var scrollBoxes = document.getElementsByClassName("scrollable-content");
+for (var i = 0; i < scrollBoxes.length; i++) {
+    scrollBoxes[i].style.height = (window.innerHeight * .60) + "px";
+}

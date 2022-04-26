@@ -62,5 +62,40 @@ namespace YouVents.API {
             connection.Close();
         }
 
+        public static List<string> GetRecentContacts(string id)
+        {
+            // Declare a list of message objects - to be returned
+            List<string> UserNames = new List<string>();
+            List<string> IDs = new List<string>();
+
+            using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
+            SqliteCommand cmd = new SqliteCommand($"select DISTINCT(SenderID || ',' ||  ReceiverID) AS 'Both' " +
+                $"from DirectMessages where (SenderID = @id1 or ReceiverID = @id2);", connection);
+            connection.Open();
+            cmd.Parameters.Add(new SqliteParameter("@id1", id));
+            cmd.Parameters.Add(new SqliteParameter("@id2", id));
+            using (SqliteDataReader reader = cmd.ExecuteReader())
+            {
+                // Check if there are any rows to read, given the above query
+                if (reader.HasRows)
+                {
+                    // Loop through each row in the query result
+                    while (reader.Read())
+                    {
+                        var both = reader.GetString(reader.GetOrdinal("Both")).Split(',');
+                        var otherID = both[0] == id ? both[1] : both[0];
+                        if (!IDs.Contains(otherID))
+                        {
+                            IDs.Add(otherID);
+                            UserNames.Add(UsersMethods.GetUserNameById(otherID));
+                        }
+                    }
+                }
+            }
+
+            // Return the list of events that were returned -- all events in the db
+            return UserNames;
+        }
+
     }
 }

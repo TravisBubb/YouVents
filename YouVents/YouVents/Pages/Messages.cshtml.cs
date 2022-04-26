@@ -11,24 +11,31 @@ namespace YouVents.Pages
 {
     public class MessagesModel : PageModel
     {
-        public ApplicationUser Receiver { get; set; }
         public List<Message> Messages { get; set; }
+        public List<string> RecentContacts { get; set; }
+        public ApplicationUser Receiver { get; set; }
         public ApplicationUser Sender { get; set; }
-        public IActionResult OnGet(string ReceiverUsername)
+        public IActionResult OnGet(string? ReceiverUsername)
         {
-
             if (HttpContext.User.Identity.IsAuthenticated)
             {
                 string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 Sender = UsersMethods.GetById(userId);
-                //Receiver = UsersMethods.GetById(ReceiverID);
-                Receiver = UsersMethods.GetByUsername(ReceiverUsername);
+                Console.WriteLine(ReceiverUsername);
+                if (!(ReceiverUsername is null))
+                {
+                    Receiver = UsersMethods.GetByUsername(ReceiverUsername);
+                    Messages = MessageMethods.GetPastMessages(userId, Receiver.Id);
+                }
+                else Receiver = new ApplicationUser { UserName = "" };
 
-                Messages = MessageMethods.GetPastMessages(userId, Receiver.Id);
+                RecentContacts = MessageMethods.GetRecentContacts(userId);
+
 
                 return Page();
             }
-            else {
+            else
+            {
                 return NotFound();
             }
         }

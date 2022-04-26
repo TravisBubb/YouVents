@@ -15,14 +15,7 @@ namespace YouVents.Pages
 
         public IActionResult OnGet()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return RedirectToPage("/Events/Index");
-            }
-            else
-            {
-                return Page();
-            }
+            return Page();
         }
     }
 }

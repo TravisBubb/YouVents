@@ -28,9 +28,13 @@ connection.on("ReceiveMessage", function (user, message) {
 
     var Message = document.createElement("p");
     document.getElementById("messagesList").appendChild(Message);
-    Message.className = "text-black h4";
+    Message.className = "text-black h4 message";
     Message.id = "Content";
+    console.log(message);
     Message.textContent = `${message}`;
+
+    
+
 });
 
 connection.start().then(function () {
@@ -39,18 +43,18 @@ connection.start().then(function () {
     return console.error(err.toString());
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) { sendMessage();});
-document.getElementById("sendButton").addEventListener("keypress", function (event) { if(event.key === "Enter") { sendMessage(); }}); // Currently not working
+document.getElementById("sendButton").addEventListener("click", function (event) { sendMessage(); });
+document.getElementById("sendButton").addEventListener("keypress", function (event) { if (event.key === "Enter") { sendMessage(); } }); // Currently not working
 
 function sendMessage() {
     var SenderID = document.getElementById("SenderHiddenID").innerHTML;
     var ReceiverID = document.getElementById("ReceiverHiddenID").innerHTML;
-    var message = document.getElementById("messageInput").value;
-
-    connection.invoke("SendMessage", SenderID, ReceiverID, message).catch(function (err) {
-        return console.error(err.toString());
-
-    });
+    var message = document.getElementById("messageInput").value.trim();
+    if (message) {
+        connection.invoke("SendMessage", SenderID, ReceiverID, message).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
 
     event.preventDefault();
     document.getElementById("messageInput").value = ""; // deleting the text in the input field after clicking send

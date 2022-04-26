@@ -44,14 +44,35 @@ namespace YouVents.API
             return user;
         }
 
+        // Return a user's UserName given their ID
+        public static string GetUserNameById(string id)
+        {
+            string userName="";
+
+            using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
+            SqliteCommand cmd = new SqliteCommand($"SELECT UserName FROM AspNetUsers WHERE Id=@id", connection);
+            cmd.Parameters.Add(new SqliteParameter("@id", id));
+            connection.Open();
+
+            using SqliteDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    userName = reader.GetString(reader.GetOrdinal("UserName"));
+                }
+            }
+            return userName;
+        }
+
         public static ApplicationUser GetByUsername(string username) {
             // User variable that will be populated and returned
             ApplicationUser user = null;
 
             using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
-            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM AspNetUsers WHERE UserName='{username}'", connection);
+            SqliteCommand cmd = new SqliteCommand($"SELECT * FROM AspNetUsers WHERE UserName=@username", connection);
+            cmd.Parameters.Add(new SqliteParameter("@username", username));
             connection.Open();
-
             using SqliteDataReader reader = cmd.ExecuteReader();
             if (reader.HasRows) {
                 while (reader.Read()) {

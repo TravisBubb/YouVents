@@ -74,24 +74,36 @@ body {
 }
 
 /* EventList div - contains all of the event listings */
-#EventList {
-    max-height: 65vh;
+.scrollable-content {
+/*    max-height: 65vh;*/
     overflow-y: auto;
     overflow-x: hidden;
 }
 
     /* Scroll bar styling for EventsList on browse page */
-    #EventList::-webkit-scrollbar {
+    .scrollable-content::-webkit-scrollbar {
         width: 10px;
     }
 
-    #EventList::-webkit-scrollbar-track {
+    .scrollable-content::-webkit-scrollbar-track {
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         border-radius: 15px;
     }
 
-    #EventList::-webkit-scrollbar-thumb {
+    .scrollable-content::-webkit-scrollbar-thumb {
         border-radius: 15px;
         background-color: #3b82fe;
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     }
+
+.relative-bottom {
+    margin-top: auto;
+}
+
+.relative-top {
+    margin-bottom: auto;
+}
+
+.message {
+    white-space: pre-line;
+}
