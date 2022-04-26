@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using YouVents.Models;
 
-namespace YouVents.API {
-    public class MessageMethods {
-        public static List<Message> GetPastMessages(string user1, string user2) {
+namespace YouVents.API
+{
+    public class MessageMethods
+    {
+        public static List<Message> GetPastMessages(string user1, string user2)
+        {
             // Declare a list of message objects - to be returned
             List<Message> Messages = new List<Message>();
 
@@ -16,16 +19,20 @@ namespace YouVents.API {
             connection.Open();
             cmd.Parameters.Add(new SqliteParameter("@user1", user1));
             cmd.Parameters.Add(new SqliteParameter("@user2", user2));
-            using (SqliteDataReader reader = cmd.ExecuteReader()) {
+            using (SqliteDataReader reader = cmd.ExecuteReader())
+            {
                 // Check if there are any rows to read, given the above query
-                if (reader.HasRows) {
+                if (reader.HasRows)
+                {
 
                     // Loop through each row in the query result
-                    while (reader.Read()) {
+                    while (reader.Read())
+                    {
                         // Compare the Event's date and time to the current date and time
                         DateTime Timestamp = Convert.ToDateTime(reader.GetString(reader.GetOrdinal("Timestamp")));
                         // Create a message object and add it to the list
-                        Message NewMessage = new Message {
+                        Message NewMessage = new Message
+                        {
                             ID = reader.GetInt32(reader.GetOrdinal("ID")),
                             SenderID = reader.GetString(reader.GetOrdinal("SenderID")),
                             ReceiverID = reader.GetString(reader.GetOrdinal("ReceiverID")),
@@ -43,7 +50,8 @@ namespace YouVents.API {
             return Messages;
         }
 
-        public static void AddNewMessage(Message M) {
+        public static void AddNewMessage(Message M)
+        {
             SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
             connection.Open();
             SqliteCommand insertion = new SqliteCommand("" +
@@ -53,10 +61,12 @@ namespace YouVents.API {
             insertion.Parameters.Add(new SqliteParameter("@ReceiverID", M.ReceiverID));
             insertion.Parameters.Add(new SqliteParameter("@Content", M.Content));
             //insertion.Parameters.Add(new SqliteParameter("@Timestamp", M.Timestamp));
-            try {
+            try
+            {
                 insertion.ExecuteNonQuery();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
             }
             connection.Close();
@@ -69,11 +79,23 @@ namespace YouVents.API {
             List<string> IDs = new List<string>();
 
             using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
-            SqliteCommand cmd = new SqliteCommand($"select DISTINCT(SenderID || ',' ||  ReceiverID) AS 'Both' " +
-                $"from DirectMessages where (SenderID = @id1 or ReceiverID = @id2);", connection);
+            SqliteCommand cmd = new SqliteCommand(
+                $"SELECT UserName FROM AspNetUsers " +
+                $"WHERE Id IN " +
+                    $"(SELECT SenderID FROM " +
+                        $"(SELECT SenderID FROM " +
+                            $"(SELECT SenderID, ReceiverID FROM DirectMessages " +
+                            $"WHERE SenderID = @id " +
+                            $"OR ReceiverID = @id) " +
+                        $"UNION " +
+                        $"SELECT ReceiverID FROM " +
+                            $"(SELECT SenderID, ReceiverID FROM DirectMessages " +
+                            $"WHERE SenderID = @id " +
+                            $"OR ReceiverID = @id)) " +
+                    $"Where SenderID != @id)", connection);
+
             connection.Open();
-            cmd.Parameters.Add(new SqliteParameter("@id1", id));
-            cmd.Parameters.Add(new SqliteParameter("@id2", id));
+            cmd.Parameters.Add(new SqliteParameter("@id", id));
             using (SqliteDataReader reader = cmd.ExecuteReader())
             {
                 // Check if there are any rows to read, given the above query
@@ -82,13 +104,15 @@ namespace YouVents.API {
                     // Loop through each row in the query result
                     while (reader.Read())
                     {
-                        var both = reader.GetString(reader.GetOrdinal("Both")).Split(',');
-                        var otherID = both[0] == id ? both[1] : both[0];
-                        if (!IDs.Contains(otherID))
-                        {
-                            IDs.Add(otherID);
-                            UserNames.Add(UsersMethods.GetUserNameById(otherID));
-                        }
+                        //var both = reader.GetString(reader.GetOrdinal("Both")).Split(',');
+                        //var otherID = both[0] == id ? both[1] : both[0];
+                        //if (!IDs.Contains(otherID))
+                        //{
+                        //    IDs.Add(otherID);
+                        //    UserNames.Add(UsersMethods.GetUserNameById(otherID));
+                        //}
+
+                        UserNames.Add(reader.GetString(0));
                     }
                 }
             }
