@@ -16,43 +16,43 @@
         <form id="account" asp-route-returnUrl="@Model.ReturnUrl" method="post">
 
             <!-- Fist and last name -->
-            <div class="form-group fadeIn second mb-4">
-                <div class="form-group">
+            <div class="form-group fadeIn second">
+                <div class="form-group mb-sm-0 mb-lg-2">
                     <input type="text" asp-for="Input.FirstName" class="form-control" placeholder="First Name" />
                     <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-sm-0 mb-lg-2">
                     <input type="text" asp-for="Input.LastName" class="form-control" placeholder="Last Name" />
                     <span asp-validation-for="Input.LastName" class="text-danger"></span>
                 </div>
             </div>
 
             <!-- UserName -->
-            <div class="form-group fadeIn third mb-4">
+            <div class="form-group fadeIn third mb-lg-2">
                 <input type="text" asp-for="Input.UserName" class="form-control" placeholder="Username" />
                 <span asp-validation-for="Input.UserName" class="text-danger"></span>
             </div>
 
             <!-- Email -->
-            <div class="form-group fadeIn fourth mb-4">
+            <div class="form-group fadeIn fourth">
                 <input type="text" asp-for="Input.Email" class="form-control" placeholder="Email" />
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
 
             <!-- Password / Confirm Password-->
-            <div class="form-group fadeIn fifth mb-4">
-                <div class="form-group">
+            <div class="form-group fadeIn fifth">
+                <div class="form-group mb-lg-2">
                     <input type="password" asp-for="Input.Password" class="form-control" placeholder="Password" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group mb-lg-2">
                     <input type="password" asp-for="Input.ConfirmPassword" class="form-control" placeholder=" Confirm Password" />
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
             </div>
 
             <!-- DOB & Account Type-->
-            <div class="form-group row fadeIn sixth">
+            <div class="form-group row fadeIn sixth mb-0">
                 <div class="col-1"></div>
                 <div class="form-group col-5">
                     <label asp-for="Input.DOB">Date Of Birth:</label>
@@ -69,7 +69,7 @@
                 <div class="col"></div>
             </div>
 
-            <input type="submit" class="fadeIn seventh mb-3" value="Sign up">
+            <input type="submit" class="fadeIn seventh mb-2" value="Sign up">
         </form>
     </div>
 </div>

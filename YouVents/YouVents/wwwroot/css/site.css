@@ -319,3 +319,10 @@ body {
     }
 
 /* End Login and Register Forms*/
+
+.sticky {
+    position: -webkit-sticky; /* for Safari */
+    position: sticky;
+    top: 21%; /* Account for navigation bar */
+    align-self: flex-start;
+}
