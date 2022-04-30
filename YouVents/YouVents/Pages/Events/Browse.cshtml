@@ -10,7 +10,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 text-center">
-            <h2 class="mb-3">Upcoming Events:</h2>
+
             <!-- filtering menu -->
             <div class="container-fluid" style="display: flex;">
                 <div class="w-25 sticky border-right">
@@ -54,28 +54,31 @@
                         </div>
                     </form>
                 </div>
+
                 <!-- Event listings -->
-                <div>
-                    <div id="EventList" class="mt-4" style="min-height: 70vh;">
+                <div class="w-100">
+                    <h2 class="mb-5">Upcoming Events:</h2>
+                    <div id="EventList" class="mt-4" style="min-height: 70vh; display: flex; flex-wrap: wrap;">
                         <!-- Loop through all of the events and display them -->
                         @foreach (var E in Model.Events)
                         {
-                            <div class="w-100 mx-auto mb-4">
+                            <div class="mb-5 ml-5 mr-3">
                                 <span>
-                                    <div class="row justify-content-center">
-                                        <div class="col mx-2 my-auto">
+                                    <div class="justify-content-center">
+                                        <div class="m-0">
                                             <a asp-page="/Events/View" asp-route-id="@E.Id" asp-route-edit=0>
-                                                <img align="right" style="max-height: 12vw; width:12vw" class="mx-0 px-0 d-block" src="@E.Image" />
+                                                @*<img align="left" style="max-height: 12vw; width:12vw" class="mx-5 px-0 d-block" src="@E.Image" />*@
+                                                <img style="height: 8vw; width:12vw" class="px-0 d-block" src="@E.Image" />
                                             </a>
                                         </div>
-                                        <div class="col text-left my-auto">
-                                            <p class="m-0 w-75" style="font-size: calc(10px + .7vw); text-shadow: -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px -1px 0 #FFFFFF;">
+                                        <div class="text-left my-auto">
+                                            <p class="m-0" style="width: 12vw; font-size: calc(10px + .7vw); text-shadow: -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px -1px 0 #FFFFFF;">
                                                 <a asp-page="/Events/View" asp-route-id="@E.Id" asp-route-edit=0><strong>@E.Name</strong></a>
                                             </p>
-                                            <p class="text-black-50 m-0" id="Date" style="font-size: calc(8px + .5vw);">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
-                                            <p class="text-black-50 m-0" id="Time" style="font-size: calc(8px + .5vw);">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
-                                            <p class="text-black-50 m-0" id="Price" style="font-size: calc(8px + .5vw);">Price: @E.Price.ToString("C", Culture)</p>
-                                            <p class="text-black-50 m-0" id="Location" style="font-size: calc(8px + .5vw);">Location: @E.City, @E.State</p>
+                                            <p class="text-black-50 m-0" id="Date" style="width: 12vw; font-size: calc(8px + .5vw);">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
+                                            <p class="text-black-50 m-0" id="Time" style="width: 12vw; font-size: calc(8px + .5vw);">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
+                                            <p class="text-black-50 m-0" id="Price" style="width: 12vw; font-size: calc(8px + .5vw);">Price: @E.Price.ToString("C", Culture)</p>
+                                            <p class="text-black-50 m-0" id="Location" style="width: 12vw;font-size: calc(8px + .5vw);">Location: @E.City, @E.State</p>
                                         </div>
                                     </div>
                                 </span>
