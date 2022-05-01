@@ -15,7 +15,7 @@ namespace YouVents.API
             using SqliteConnection connection = new SqliteConnection("Data Source=YouVents.db");
             SqliteCommand cmd = new SqliteCommand($"SELECT M.*, U.UserName FROM DirectMessages M, AspNetUsers U " +
                 "WHERE SenderID = U.Id AND((SenderID = @user1 AND ReceiverID = @user2) " +
-                "OR(ReceiverID = @user1 AND SenderID = @user2)) ORDER BY ID", connection);
+                "OR(ReceiverID = @user1 AND SenderID = @user2)) ORDER BY Timestamp", connection);
             connection.Open();
             cmd.Parameters.Add(new SqliteParameter("@user1", user1));
             cmd.Parameters.Add(new SqliteParameter("@user2", user2));

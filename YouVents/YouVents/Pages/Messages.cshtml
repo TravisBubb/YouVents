@@ -9,12 +9,12 @@
         <div class="col-3 border-right scrollable-content">
             @foreach (var contact in Model.RecentContacts)
             {
-                <div class="card" style="max-width: 18rem;">
-                    <div class="card-header">
+                <div class="card mb-1" style="height:6vh; max-width: 18rem;">
+                    <a style="height:6vh;" asp-page="/Messages" asp-route-ReceiverUsername="@contact" class="card-header">
                         <h5>
-                            <a asp-page="/Messages" asp-route-ReceiverUsername="@contact">@contact</a>
+                            <p>@contact</p>
                         </h5>
-                    </div>
+                    </a>
                 </div>
             }
 
@@ -26,7 +26,7 @@
                     <h3 class="ml-5 mb-3">@@<u>@Model.Receiver.UserName</u></h3>
                 </div>
                 <div class="row scrollable-content mb-2">
-                    <div class="col-6">
+                    <div class="col">
                         <ul id="messagesList">
                             @foreach (var msg in Model.Messages)
                             {
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <p hidden id=SenderHiddenID>@Model.Sender.Id</p>
-                <p hidden id=SenderHiddenName>@Model.Sender.FirstName @Model.Sender.LastName</p>
+                <p hidden id=SenderHiddenName>@Model.Sender.UserName</p>
                 <p hidden id=ReceiverHiddenID>@Model.Receiver.Id</p>
                 <div class="row mb-3 relative-bottom">
                     <div class="col my-auto">
