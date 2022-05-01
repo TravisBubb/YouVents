@@ -13,7 +13,7 @@
 
             <!-- filtering menu -->
             <div class="container-fluid" style="display: flex;">
-                <div class="w-25 sticky border-right">
+                <div class="w-25 sticky border-right" style="min-width: 10em">
                     <form id="FilterForm" method="post">
                         <div class="col-11">
                             <div class="my-2">
@@ -62,23 +62,23 @@
                         <!-- Loop through all of the events and display them -->
                         @foreach (var E in Model.Events)
                         {
-                            <div class="mb-5 ml-5 mr-3">
+                            <div class="mb-5" style="margin-left: 5vw; margin-right: 0.5vw; min-width: 8em;">
                                 <span>
-                                    <div class="justify-content-center">
-                                        <div class="m-0">
+                                    <div>
+                                        <div class="m-0" style="min-height: 5em; height: 7.5vw;">
                                             <a asp-page="/Events/View" asp-route-id="@E.Id" asp-route-edit=0>
                                                 @*<img align="left" style="max-height: 12vw; width:12vw" class="mx-5 px-0 d-block" src="@E.Image" />*@
-                                                <img style="height: 8vw; width:12vw" class="px-0 d-block" src="@E.Image" />
+                                                <img style="min-width: 8em; width: 12vw;" class="px-0 d-block" src="@E.Image" />
                                             </a>
                                         </div>
                                         <div class="text-left my-auto">
-                                            <p class="m-0" style="width: 12vw; font-size: calc(10px + .7vw); text-shadow: -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px -1px 0 #FFFFFF;">
+                                            <p class="m-0" style="min-width: 8em; width: 12vw; font-size: calc(10px + .7vw); text-shadow: -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px -1px 0 #FFFFFF;">
                                                 <a asp-page="/Events/View" asp-route-id="@E.Id" asp-route-edit=0><strong>@E.Name</strong></a>
                                             </p>
-                                            <p class="text-black-50 m-0" id="Date" style="width: 12vw; font-size: calc(8px + .5vw);">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
-                                            <p class="text-black-50 m-0" id="Time" style="width: 12vw; font-size: calc(8px + .5vw);">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
-                                            <p class="text-black-50 m-0" id="Price" style="width: 12vw; font-size: calc(8px + .5vw);">Price: @E.Price.ToString("C", Culture)</p>
-                                            <p class="text-black-50 m-0" id="Location" style="width: 12vw;font-size: calc(8px + .5vw);">Location: @E.City, @E.State</p>
+                                            <p class="text-black-50 m-0" id="Date" style="min-width: 8em; width: 12vw; font-size: calc(8px + .5vw);">Date: @Convert.ToDateTime(E.Date).ToString("ddd, MMM dd yyyy")</p>
+                                            <p class="text-black-50 m-0" id="Time" style="min-width: 8em; width: 12vw; font-size: calc(8px + .5vw);">Time: @Convert.ToDateTime(E.Time).ToString("h:mm tt")</p>
+                                            <p class="text-black-50 m-0" id="Price" style="min-width: 8em; width: 12vw; font-size: calc(8px + .5vw);">Price: @E.Price.ToString("C", Culture)</p>
+                                            <p class="text-black-50 m-0" id="Location" style="min-width: 8em; width: 12vw;font-size: calc(8px + .5vw);">Location: @E.City, @E.State</p>
                                         </div>
                                     </div>
                                 </span>

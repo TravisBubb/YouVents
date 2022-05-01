@@ -63,8 +63,6 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    margin-left: 3em;
-    margin-right: 3em;
 }
 
 .footer {
