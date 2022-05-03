@@ -20,41 +20,49 @@
 
         </div>
         <div class="col">
-            @if (Model.Receiver.UserName != "")
+            @if (Model.RecentContacts.Count > 0)
             {
-                <div class="row relative-top">
-                    <h3 class="ml-5 mb-3">@@<u>@Model.Receiver.UserName</u></h3>
-                </div>
-                <div class="row scrollable-content mb-2">
-                    <div class="col">
-                        <ul id="messagesList">
-                            @foreach (var msg in Model.Messages)
-                            {
-                                <p class="text-primary m-0" id="Sendername">
-                                    @msg.Sendername:
-                                    <span class="text-muted small" id="Timestamp">@Convert.ToDateTime(msg.Timestamp).ToLocalTime().ToString("M/d/yyyy, hh:mm:ss tt")</span>
-                                </p>
-                                <p class="text-black mb-3 h4 message p-0" id="Content">@msg.Content</p>
-                            }
-                        </ul>
+                @if (Model.Receiver.UserName != "")
+                {
+                    <div class="row relative-top">
+                        <h3 class="ml-5 mb-3">@@<u>@Model.Receiver.UserName</u></h3>
                     </div>
-                </div>
-                <p  id=SenderHiddenID>@Model.Sender.Id</p>
-                <p  id=SenderHiddenName>@Model.Sender.UserName</p>
-                <p  id=ReceiverHiddenID>@Model.Receiver.Id</p>
-                <div class="row mb-3 relative-bottom">
-                    <div class="col my-auto">
-                        <textarea id="messageInput" rows="1" class="w-100 p-2"></textarea>
+                    <div class="row scrollable-content mb-2">
+                        <div class="col">
+                            <ul id="messagesList">
+                                @foreach (var msg in Model.Messages)
+                                {
+                                    <p class="text-primary m-0" id="Sendername">
+                                        @msg.Sendername:
+                                        <span class="text-muted small" id="Timestamp">@Convert.ToDateTime(msg.Timestamp).ToLocalTime().ToString("M/d/yyyy, hh:mm:ss tt")</span>
+                                    </p>
+                                    <p class="text-black mb-3 h4 message p-0" id="Content">@msg.Content</p>
+                                }
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-3 my-auto">
-                        <button id="sendButton" class="btn btn-outline-primary" data-mdb-ripple-color="dark" style="margin-bottom: .4em; height: 2.5em;">Send Message</button>
+                    <p id=SenderHiddenID>@Model.Sender.Id</p>
+                    <p id=SenderHiddenName>@Model.Sender.UserName</p>
+                    <p id=ReceiverHiddenID>@Model.Receiver.Id</p>
+                    <div class="row mb-3 relative-bottom">
+                        <div class="col my-auto">
+                            <textarea id="messageInput" rows="1" class="w-100 p-2"></textarea>
+                        </div>
+                        <div class="col-3 my-auto">
+                            <button id="sendButton" class="btn btn-outline-primary" data-mdb-ripple-color="dark" style="margin-bottom: .4em; height: 2.5em;">Send Message</button>
+                        </div>
                     </div>
-                </div>
+                }
             }
+            else
+            {
+                <h2 class="text-center">You do not have any conversations.</h2>
+                <p class="text-center">Contact an organizer through one of their events to start your messages feed.</p>
+            }
+
         </div>
     </div>
 </div>
-
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
