@@ -351,7 +351,7 @@ namespace YouVents.API
         }
 
         // Return all future events given a specific info
-        public static List<Event> EventsQuery(string city, float price, string date, string sortMethod)
+        public static List<Event> EventsQuery(string name, string city, float price, string date, string sortMethod)
         {
             // Declare a list of Event objects - to be returned
             List<Event> Events = new List<Event>();
@@ -377,8 +377,9 @@ namespace YouVents.API
             //}
 
             cmd = new SqliteCommand($"SELECT a.*, b.Date || ' ' || b.Time AS DateTime FROM Events a, Events b " +
-                $"WHERE a.Id == b.Id AND a.price <= @price AND UPPER(a.city) LIKE UPPER(@city) AND a.date >= @date " +
+                $"WHERE a.Id == b.Id AND UPPER(a.Name) LIKE UPPER(@name) AND a.price <= @price AND UPPER(a.city) LIKE UPPER(@city) AND a.date >= @date " +
                 $"ORDER BY " + sortMethod, connection);
+            cmd.Parameters.Add(new SqliteParameter("@name", name));
             cmd.Parameters.Add(new SqliteParameter("@city", city));
             cmd.Parameters.Add(new SqliteParameter("@price", price));
             cmd.Parameters.Add(new SqliteParameter("@date", date));

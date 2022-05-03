@@ -50,6 +50,8 @@ namespace YouVents.Pages.Events
         //Testing EventsQuery-->
         public IActionResult OnPost() {
 
+            string name = Input.Name != null ? Input.Name : "%";
+            name = "%" + name + "%";
 
             string city = Input.City != null ? Input.City : "%";
             city = "%" + city + "%";
@@ -70,7 +72,7 @@ namespace YouVents.Pages.Events
                 sortMethod = "DateTime DESC";
             else sortMethod = "DateTime";
 
-            Events = EventsMethods.EventsQuery(city, price, date, sortMethod);
+            Events = EventsMethods.EventsQuery(name, city, price, date, sortMethod);
             return Page();
         
         }

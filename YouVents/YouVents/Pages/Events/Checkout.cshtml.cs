@@ -16,13 +16,17 @@ namespace YouVents.Pages.Events.Purchase
     {
         public Event Event { get; set; }
         public int NumTickets { get; set; }
-        public float TotalCost { get; set; }
+        public double SubTotalCost { get; set; }
+        public double SaleTax { get; set; }
+        public double TotalSale { get; set; }
 
         public IActionResult OnGet(int id, int num_tix)
         {
             NumTickets = num_tix;
             Event = EventsMethods.GetById(id);
-            TotalCost = NumTickets * Event.Price;
+            SubTotalCost = NumTickets * Event.Price;
+            SaleTax = SubTotalCost * 0.06;
+            TotalSale = SaleTax + SubTotalCost;
             return Page();
         }
 
