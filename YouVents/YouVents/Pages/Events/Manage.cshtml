@@ -9,33 +9,42 @@
 <div class="container">
     <div class="row">
         <div class="col-4">
-            <h2 class="my-2">Create an Event</h2>
+            <h1 class="my-2">Create an Event</h1>
             <p>Easily post your own events and sell tickets.</p>
             <p>With just a few clicks you can have your event up and running, and visible on our site.</p>
             <a asp-page="/Events/Create"><input type="button" class="btn-lg btn-primary" value="Create a new Event" /></a>
         </div>
         <div class="col-8 text-center">
-            <h2 class="my-3">My Events</h2>
-            <div id="EventList" class="mt-4 scrollable-content">
-                <!-- Loop through all of the events and display them -->
-                @foreach (var E in Model.Events)
-                {
-                    <a asp-page="/Events/Edit" asp-route-id="@E.Id">
-                        <div class="row mb-5">
-                            <div class="col text-right my-auto">
-                                <img style="max-height:200px; width:200px" src="@E.Image" />
+            <h1 class="my-3">My Events</h1>
+            @if (Model.Events.Count > 0)
+            {
+                <div id="EventList" class="mt-4 scrollable-content">
+                    <!-- Loop through all of the events and display them (if any) -->
+                    @foreach (var E in Model.Events)
+                    {
+                        <a asp-page="/Events/Edit" asp-route-id="@E.Id">
+                            <div class="row mb-5">
+                                <div class="col text-right my-auto">
+                                    <img style="max-height:200px; width:200px" src="@E.Image" />
+                                </div>
+                                <div class="col text-left my-auto">
+                                    <p class="m-0"><strong>@E.Name</strong></p>
+                                    <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
+                                    <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
+                                    <p class="text-black-50 m-0">Price: @E.Price.ToString("C", Culture)</p>
+                                    <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
+                                </div>
                             </div>
-                            <div class="col text-left my-auto">
-                                <p class="m-0"><strong>@E.Name</strong></p>
-                                <p class="text-black-50 m-0">Date: @Convert.ToDateTime(E.Date).ToString("ddd, dd MMM yyyy")</p>
-                                <p class="text-black-50 m-0">Time: @Convert.ToDateTime(E.Time).ToString("hh:mm tt")</p>
-                                <p class="text-black-50 m-0">Price: @E.Price.ToString("C", Culture)</p>
-                                <p class="text-black-50 m-0">Location: @E.City, @E.State</p>
-                            </div>
-                        </div>
-                    </a>
-                }
-            </div>
+                        </a>
+
+                    }
+                </div>
+            }
+            else
+            {
+                <p>You do not have any events of your own.</p>
+                <p>When you do, they will all display right here for you to access and edit them as you wish.</p>
+            }
         </div>
     </div>
 </div>
