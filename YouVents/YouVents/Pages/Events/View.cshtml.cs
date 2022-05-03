@@ -21,7 +21,7 @@ namespace YouVents.Pages.Events
             Edit = edit;
             Event = EventsMethods.GetById(id);
 
-            string EventAddress = Event.Street + Event.City + Event.State + Event.Zip;
+            string EventAddress = Event.Street + ", " + Event.City + ", " + Event.State + " " + Event.Zip;
             EventMap = "https://maps.google.com/maps?q=" + EventAddress + "&t=&z=13&ie=UTF8&iwloc=&output=embed";
 
             if (Event == null)
