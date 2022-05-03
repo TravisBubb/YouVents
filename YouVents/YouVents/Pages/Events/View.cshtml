@@ -38,7 +38,8 @@
                             background: none !important;
                             height: 500px;
                             width: 600px;
-                        }</style>
+                        }
+                    </style>
                 </div>
             </div>
 
@@ -58,8 +59,10 @@
                     <p class="card-text"><b>Capacity:</b> @Model.Event.Capacity.ToString("N0")</p>
                     <p class="card-text"><b>Ticket Price:</b> @Model.Event.Price.ToString("C", Culture)</p>
                     <form asp-route-id="@Model.Event.Id" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
                         <label asp-for="NumTickets">Tickets:</label>
                         <input type="number" class="form-control mb-2" asp-for="NumTickets" />
+                        <span asp-validation-for="NumTickets" class="text-danger"></span>
                         <input type="submit" class="btn btn-lg btn-outline-primary" value="Checkout" />
                     </form>
                 </div>
@@ -107,4 +110,8 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
 

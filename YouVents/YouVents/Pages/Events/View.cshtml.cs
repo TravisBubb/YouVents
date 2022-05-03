@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using YouVents.API;
 using YouVents.Areas.Identity.Data;
 using YouVents.Models;
@@ -36,7 +37,13 @@ namespace YouVents.Pages.Events
 
         public IActionResult OnPost(int id)
         {
-            return Redirect($"/Events/Checkout/{id}/{NumTickets}");
+            if (NumTickets > 0)
+                return Redirect($"/Events/Checkout/{id}/{NumTickets}");
+            else
+            {
+                ModelState.AddModelError("NumTickets", "Must have at least 1 ticket to chekout");
+                return RedirectToPage(new { id = id, edit = 0});
+            }
         }
     }
 }
