@@ -36,7 +36,7 @@ namespace YouVents.Pages
             }
             else
             {
-                return NotFound();
+                return RedirectToPage("/Account/Login", new { area = "Identity" });
             }
         }
     }
