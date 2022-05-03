@@ -78,7 +78,7 @@ namespace YouVents.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/Events/Browse");
 
             // Determine if a username or email was used for login attempt, and check formatting
-            if (Input.Email.IndexOf('@') > -1) // If there is an @ in the string
+            if (Input.Email != "" && Input.Email.IndexOf('@') > -1) // If there is an @ in the string
             {
                 // Validate email format manually
                 string emailRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +

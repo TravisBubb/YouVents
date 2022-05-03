@@ -106,6 +106,27 @@ namespace YouVents.Areas.Identity.Pages.Account
                     DOB = Input.DOB,
                     AccountType = Input.AccountType.ToString()
                 };
+
+                // Check if there is already a user in the DB with the entered UserName
+                var existingUserByUserName = await _userManager.FindByNameAsync(user.UserName);
+
+                if (existingUserByUserName != null)
+                {
+                    Console.WriteLine("Existing User " + existingUserByUserName.Email);
+                    ModelState.AddModelError(String.Empty, "Username already taken.");
+                    return Page();
+                }
+
+                // Check if there is already a user in the DB with the entered email
+                var existingUserByEmail = await _userManager.FindByEmailAsync(user.Email);
+
+                if (existingUserByEmail != null)
+                {
+                    Console.WriteLine("Existing User " + existingUserByEmail.UserName);
+                    ModelState.AddModelError(String.Empty, "Email already taken.");
+                    return Page();
+                }
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
