@@ -14,7 +14,7 @@
             <!-- filtering menu -->
             <div class="container-fluid" style="display: flex;">
                 <div class="w-25 sticky border-right" style="min-width: 10em">
-                    <form id="FilterForm" method="post">
+                    <form id="FilterForm" method="post" autocomplete="off">
                         <div class="col-11">
                             <div class="my-2">
                                 <div style="font-size:1.5em;">Filter By:</div>
@@ -49,7 +49,8 @@
                                 </select>
                             </div>
                             <div class="my-3">
-                                <input class="btn btn-success" id="FilterBtn" type="submit" value="Apply Filters" />
+                                <input class="btn btn-success" id="FilterBtn" type="submit" value="Apply" />
+                                <input class="btn btn-light" id="ClearBtn" type="button" value="Clear" onclick="clearForm()" />
                             </div>
                         </div>
                     </form>
@@ -98,4 +99,3 @@
         </div>
     </div>
 </div>
-

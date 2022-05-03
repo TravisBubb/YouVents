@@ -25,6 +25,21 @@
 //    });
 //});
 
+
+
+// Clear the filter form when the clear button is clicked on /Events/Browse.cshtml
+// Get all of the input elements and reset their values to the default
+function clearForm() {
+    const inputs = document.querySelectorAll('#EventSearch, #DateSearch, #PriceSearch, #CitySearch, #SortBy');
+    inputs.forEach(input => {
+        if (input.id === 'SortBy')
+            input.value = 'Sort By';
+        else
+            input.value = '';
+    });
+}
+
+
 window.addEventListener("resize", function () {
     //var messageContainer = document.getElementById("messageContainer");
     var scrollBoxes = document.getElementsByClassName("scrollable-content");
