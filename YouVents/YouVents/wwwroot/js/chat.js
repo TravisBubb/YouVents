@@ -7,16 +7,17 @@ document.getElementById("sendButton").disabled = true;
 
 
 
-connection.on("ReceiveMessage", function (user, message) {
+connection.on("ReceiveMessage", function (SenderUserName, message) {
+    console.log(SenderUserName);
     let currentDate = new Date()
     currentDate = currentDate.toLocaleString()
-    var SenderHiddenName = document.getElementById("SenderHiddenName").innerHTML;
+    //var SenderHiddenName = document.getElementById("SenderHiddenName").innerHTML;
 
     var AddSenderName = document.createElement("p");
     document.getElementById("messagesList").appendChild(AddSenderName);
     AddSenderName.className = "text-primary m-0";
     AddSenderName.id = "Sendername";
-    AddSenderName.textContent = `${SenderHiddenName}: `;
+    AddSenderName.textContent = `${SenderUserName}: `;
     // We can assign user-supplied strings to an element's textContent because it
     // is not interpreted as markup. If you're assigning in any other way, you 
     // should be aware of possible script injection concerns.
@@ -30,7 +31,6 @@ connection.on("ReceiveMessage", function (user, message) {
     document.getElementById("messagesList").appendChild(Message);
     Message.className = "text-black h4 message";
     Message.id = "Content";
-    console.log(message);
     Message.textContent = `${message}`;
 
     
@@ -48,10 +48,11 @@ document.getElementById("sendButton").addEventListener("keypress", function (eve
 
 function sendMessage() {
     var SenderID = document.getElementById("SenderHiddenID").innerHTML;
+    var SenderUserName = document.getElementById("SenderHiddenName").innerHTML;
     var ReceiverID = document.getElementById("ReceiverHiddenID").innerHTML;
     var message = document.getElementById("messageInput").value.trim();
     if (message) {
-        connection.invoke("SendMessage", SenderID, ReceiverID, message).catch(function (err) {
+        connection.invoke("SendMessage", SenderID, SenderUserName, ReceiverID, message).catch(function (err) {
             return console.error(err.toString());
         });
     }

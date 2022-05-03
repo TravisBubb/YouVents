@@ -8,7 +8,7 @@ namespace YouVents.Hubs {
 
     public class ChatHub : Hub {
 
-        public async Task SendMessage(string SenderID, string ReceiverID, string message) {
+        public async Task SendMessage(string SenderID, string SenderUserName, string ReceiverID, string message) {
             //Message NewMessage = new Message {
             //    SenderID = SenderID,
             //    ReceiverID = ReceiverID,
@@ -18,11 +18,9 @@ namespace YouVents.Hubs {
 
             //MessageMethods.AddNewMessage(NewMessage);
 
-            Console.WriteLine("Before await");
-
-            await Clients.All.SendAsync("ReceiveMessage", SenderID, message);
-
-            Console.WriteLine("After await");
+            //await Clients.All.SendAsync("ReceiveMessage", SenderID, message);
+            await Clients.All.SendAsync("ReceiveMessage", SenderUserName, message);
+            Console.WriteLine(SenderID);
             
             Message NewMessage = new Message {
                 SenderID = SenderID,
