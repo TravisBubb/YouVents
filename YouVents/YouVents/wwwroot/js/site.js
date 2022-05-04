@@ -1,4 +1,4 @@
-﻿//Filter the list of Events based on input in the search bar
+﻿//Filter the list of Events based on input in the search bar (responsive) -- no longer being used
 //$(document).ready(function () {
 
 //    // Try to perform a filter after a key-up event in the search bar
@@ -24,7 +24,6 @@
 //        });
 //    });
 //});
-
 
 
 // Clear the filter form when the clear button is clicked on /Events/Browse.cshtml
