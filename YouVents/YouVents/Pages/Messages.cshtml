@@ -32,18 +32,20 @@
                             <ul id="messagesList">
                                 @foreach (var msg in Model.Messages)
                                 {
-                                    <p class="text-primary m-0" id="Sendername">
-                                        @msg.Sendername:
-                                        <span class="text-muted small" id="Timestamp">@Convert.ToDateTime(msg.Timestamp).ToLocalTime().ToString("M/d/yyyy, hh:mm:ss tt")</span>
-                                    </p>
-                                    <p class="text-black mb-3 h4 message p-0" id="Content">@msg.Content</p>
+                                    <div>
+                                        <p class="text-primary m-0" id="Sendername">
+                                            @msg.Sendername:
+                                            <span class="text-muted small" id="Timestamp">@Convert.ToDateTime(msg.Timestamp).ToLocalTime().ToString("M/d/yyyy, hh:mm:ss tt")</span>
+                                        </p>
+                                        <p class="text-black mb-3 h4 message p-0" id="Content">@msg.Content</p>
+                                    </div>  
                                 }
                             </ul>
                         </div>
                     </div>
-                    <p id=SenderHiddenID>@Model.Sender.Id</p>
-                    <p id=SenderHiddenName>@Model.Sender.UserName</p>
-                    <p id=ReceiverHiddenID>@Model.Receiver.Id</p>
+                    <p hidden id=SenderHiddenID>@Model.Sender.Id</p>
+                    <p hidden id=SenderHiddenName>@Model.Sender.UserName</p>
+                    <p hidden id=ReceiverHiddenID>@Model.Receiver.Id</p>
                     <div class="row mb-3 relative-bottom">
                         <div class="col my-auto">
                             <textarea id="messageInput" rows="1" class="w-100 p-2"></textarea>

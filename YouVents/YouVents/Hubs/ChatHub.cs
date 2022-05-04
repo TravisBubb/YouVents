@@ -20,6 +20,7 @@ namespace YouVents.Hubs {
 
             //await Clients.All.SendAsync("ReceiveMessage", SenderID, message);
             await Clients.All.SendAsync("ReceiveMessage", SenderUserName, message);
+
             Console.WriteLine(SenderID);
             
             Message NewMessage = new Message {
